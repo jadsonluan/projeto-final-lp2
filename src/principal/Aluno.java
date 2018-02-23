@@ -71,7 +71,7 @@ public class Aluno {
 	/**
 	 * Verifica se o aluno é um tutor
 	 * 
-	 * @return true: é tutor. false: não é tuturo
+	 * @return true: é tutor. false: não é tutor
 	 */
 	public boolean ehTutor() {
 		return tutoria != null;
