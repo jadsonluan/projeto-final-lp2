@@ -2,9 +2,13 @@ package principal;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+/**
+ * 
+* @author Arthur de Lima Ferrão - 117110318
+ */
 public class Facade {
-		private Sistema sistema;
+	private Sistema sistema;
+	
 	public Facade(){
 		this.sistema = new Sistema();
 	}
