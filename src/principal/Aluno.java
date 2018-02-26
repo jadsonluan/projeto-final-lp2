@@ -5,7 +5,7 @@ package principal;
  *
  * @author Jadson Luan Soares da Silva, 117110391
  */
-public class Aluno {
+public class Aluno implements Comparable<Aluno> {
 	private String matricula;
 	private String nome;
 	private String email;
@@ -131,5 +131,13 @@ public class Aluno {
 
 		repr += " " + email;
 		return repr;
+	}
+
+	@Override
+	/**
+	 * Compara esse aluno com outro, baseado em seus nomes.
+	 */
+	public int compareTo(Aluno other) {
+		return this.nome.compareTo(other.nome);
 	}
 }
