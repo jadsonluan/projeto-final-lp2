@@ -65,7 +65,7 @@ public class Aluno {
 		if (tutoria == null)
 			tutoria = new Tutoria();
 
-		tutoria.cadastraDisciplina(disciplina, proficiencia);
+		tutoria.cadastrarDisciplina(disciplina, proficiencia);
 	}
 
 	/**
