@@ -9,7 +9,7 @@ public class Aluno {
 	private String matricula;
 	private String nome;
 	private String email;
-	private String codigoCurso;
+	private int codigoCurso;
 	private String telefone;
 	private Tutoria tutoria;
 
@@ -27,7 +27,7 @@ public class Aluno {
 	 * @param telefone
 	 *            telefone do aluno
 	 */
-	public Aluno(String matricula, String nome, String email, String codigoCurso, String telefone) {
+	public Aluno(String matricula, String nome, String email, int codigoCurso, String telefone) {
 		this.matricula = matricula;
 		this.nome = nome;
 		this.email = email;
@@ -49,7 +49,7 @@ public class Aluno {
 	 * @param telefone
 	 *            telefone do aluno
 	 */
-	public Aluno(String matricula, String nome, String email, String codigoCurso) {
+	public Aluno(String matricula, String nome, String email, int codigoCurso) {
 		this(matricula, nome, email, codigoCurso, null);
 	}
 
@@ -100,7 +100,7 @@ public class Aluno {
 	 * 
 	 * @return codigoCurso
 	 */
-	public String getCodigoCurso() {
+	public int getCodigoCurso() {
 		return codigoCurso;
 	}
 
