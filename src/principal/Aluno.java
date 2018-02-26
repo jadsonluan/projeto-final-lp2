@@ -133,6 +133,62 @@ public class Aluno implements Comparable<Aluno> {
 		return repr;
 	}
 
+	/**
+	 * Cadastra um horário dentro de um dia específico.
+	 * 
+	 * @param hora
+	 *            é a hora que deseja-se cadastrar
+	 * @param dia
+	 *            é o dia que deseja-se cadastrar a hora
+	 */
+	public void cadastrarHorario(String hora, String dia) {
+		if (tutoria != null) {
+			tutoria.cadastrarHorario(hora, dia);
+		}
+	}
+
+	/**
+	 * Cadastra um novo local de atendimento do tutor
+	 * 
+	 * @param local
+	 *            é o local de atendimento a ser cadastrado.
+	 */
+	public void cadastrarLocalDeAtendimento(String local) {
+		if (tutoria != null) {
+			tutoria.cadastrarLocalDeAtendimento(local);
+		}
+	}
+
+	/**
+	 * Consulta se o horario do tutor está livre ou ocupado.
+	 * 
+	 * @param hora
+	 *            é a hora que deseja-se consultar
+	 * @param dia
+	 *            é o dia que deseja-se consultar
+	 * @return retorna boolean true se o horário estiver livre. Retorna false se
+	 *         não.
+	 */
+	public void consultaHorario(String hora, String dia) {
+		if (tutoria != null) {
+			tutoria.consultaHorario(hora, dia);
+		}
+	}
+
+	/**
+	 * Consulta se o tutor estará em um local específico
+	 * 
+	 * @param local
+	 *            é o local que deseja-se consultar
+	 * @return retorna o boolean true se o local estiver ocupado. Retorna false se
+	 *         estiver livre.
+	 */
+	public void consultaLocal(String local) {
+		if (tutoria != null) {
+			tutoria.consultaLocal(local);
+		}
+	}
+
 	@Override
 	/**
 	 * Compara esse aluno com outro, baseado em seus nomes.
