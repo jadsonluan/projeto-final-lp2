@@ -14,16 +14,16 @@ public class Aluno implements Comparable<Aluno> {
 	private Tutoria tutoria;
 
 	/**
-	 * Constrói um aluno (com telefone).
+	 * ConstrÃ³i um aluno (com telefone).
 	 * 
 	 * @param matricula
-	 *            matrícula do aluno
+	 *            matrÃ­cula do aluno
 	 * @param nome
 	 *            nome do aluno
 	 * @param email
 	 *            e-mail do aluno
 	 * @param codigoCurso
-	 *            código do curso do aluno
+	 *            cÃ³digo do curso do aluno
 	 * @param telefone
 	 *            telefone do aluno
 	 */
@@ -36,16 +36,16 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Constrói um aluno. (sem telefone)
+	 * ConstrÃ³i um aluno. (sem telefone)
 	 * 
 	 * @param matricula
-	 *            matrícula do aluno
+	 *            matrÃ­cula do aluno
 	 * @param nome
 	 *            nome do aluno
 	 * @param email
 	 *            e-mail do aluno
 	 * @param codigoCurso
-	 *            código do curso do aluno
+	 *            cÃ³digo do curso do aluno
 	 * @param telefone
 	 *            telefone do aluno
 	 */
@@ -69,9 +69,9 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Verifica se o aluno é um tutor
+	 * Verifica se o aluno Ã© um tutor
 	 * 
-	 * @return true: é tutor. false: não é tutor
+	 * @return true: Ã© tutor. false: nÃ£o Ã© tutor
 	 */
 	public boolean ehTutor() {
 		return tutoria != null;
@@ -96,7 +96,7 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Retorna o código do curso do aluno
+	 * Retorna o cÃ³digo do curso do aluno
 	 * 
 	 * @return codigoCurso
 	 */
@@ -115,31 +115,31 @@ public class Aluno implements Comparable<Aluno> {
 
 	@Override
 	/**
-	 * Representação textual de um aluno.<br>
-	 * O formato da representação do aluno é:<br>
-	 * “Matricula - Nome - CódigoCurso - telefone - email” <br>
-	 * Caso não tenha telefone, a impressão do aluno deve ter o formato:<br>
-	 * “Matricula - Nome - CódigoCurso - email”
+	 * RepresentaÃ§Ã£o textual de um aluno.<br>
+	 * O formato da representaÃ§Ã£o do aluno Ã©:<br>
+	 * â€œMatricula - Nome - CÃ³digoCurso - telefone - emailâ€� <br>
+	 * Caso nÃ£o tenha telefone, a impressÃ£o do aluno deve ter o formato:<br>
+	 * â€œMatricula - Nome - CÃ³digoCurso - emailâ€�
 	 */
 	public String toString() {
 		String repr = matricula;
-		repr += " " + nome;
-		repr += " " + codigoCurso;
+		repr += " - " + nome;
+		repr += " - " + codigoCurso;
 
-		if (telefone != null)
-			repr += " " + telefone;
+		if (!telefone.equals(""))
+			repr += " - " + telefone;
 
-		repr += " " + email;
+		repr += " - " + email;
 		return repr;
 	}
 
 	/**
-	 * Cadastra um horário dentro de um dia específico.
+	 * Cadastra um horÃ¡rio dentro de um dia especÃ­fico.
 	 * 
 	 * @param hora
-	 *            é a hora que deseja-se cadastrar
+	 *            Ã© a hora que deseja-se cadastrar
 	 * @param dia
-	 *            é o dia que deseja-se cadastrar a hora
+	 *            Ã© o dia que deseja-se cadastrar a hora
 	 */
 	public void cadastrarHorario(String hora, String dia) {
 		if (tutoria != null) {
@@ -151,7 +151,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * Cadastra um novo local de atendimento do tutor
 	 * 
 	 * @param local
-	 *            é o local de atendimento a ser cadastrado.
+	 *            Ã© o local de atendimento a ser cadastrado.
 	 */
 	public void cadastrarLocalDeAtendimento(String local) {
 		if (tutoria != null) {
@@ -160,33 +160,35 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Consulta se o horario do tutor está livre ou ocupado.
+	 * Consulta se o horario do tutor estÃ¡ livre ou ocupado.
 	 * 
 	 * @param hora
-	 *            é a hora que deseja-se consultar
+	 *            Ã© a hora que deseja-se consultar
 	 * @param dia
-	 *            é o dia que deseja-se consultar
-	 * @return retorna boolean true se o horário estiver livre. Retorna false se
-	 *         não.
+	 *            Ã© o dia que deseja-se consultar
+	 * @return retorna boolean true se o horÃ¡rio estiver livre. Retorna false se
+	 *         nÃ£o.
 	 */
-	public void consultaHorario(String hora, String dia) {
+	public boolean consultaHorario(String hora, String dia) {
 		if (tutoria != null) {
-			tutoria.consultaHorario(hora, dia);
+			return tutoria.consultaHorario(hora, dia);
 		}
+		return false;
 	}
 
 	/**
-	 * Consulta se o tutor estará em um local específico
+	 * Consulta se o tutor estarÃ¡ em um local especÃ­fico
 	 * 
 	 * @param local
-	 *            é o local que deseja-se consultar
+	 *            Ã© o local que deseja-se consultar
 	 * @return retorna o boolean true se o local estiver ocupado. Retorna false se
 	 *         estiver livre.
 	 */
-	public void consultaLocal(String local) {
+	public boolean consultaLocal(String local) {
 		if (tutoria != null) {
-			tutoria.consultaLocal(local);
+			return tutoria.consultaLocal(local);
 		}
+		return false;
 	}
 
 	@Override

@@ -1,14 +1,13 @@
 package principal;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Collections;
 
 /**
- * Controla as informações de aluno
+ * Controla as informaÃ§Ãµes de aluno
  * 
- * @author Arthur de Lima Ferrão - 117110318
+ * @author Arthur de Lima FerrÃ£o - 117110318
  */
 public class Sistema {
 	private HashMap<String,Aluno> alunos;
@@ -30,49 +29,64 @@ public class Sistema {
 	 * @param email o email do aluno
 	 */
     public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email){
-    	this.alunos.put(matricula, new Aluno(matricula, nome, email, codigoCurso));
+    	if(alunos.containsKey(matricula)) {
+    		throw new IllegalArgumentException("Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
+    	}
+    	if(nome == null || nome.trim().equals("")) {
+    		throw new IllegalArgumentException("Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
+    	}
+    	//verificaEmail(email, "Erro no cadastro de aluno: ");
+    	this.alunos.put(matricula, new Aluno(matricula, nome, email, codigoCurso, telefone));
     }
     
     /**
      * Recupera o aluno pela matricula
-     * O formato da representação do aluno é:<br>
-	 * “Matricula - Nome - CódigoCurso - telefone - email” <br>
-	 * Caso não tenha telefone, a impressão do aluno deve ter o formato:<br>
-	 * “Matricula - Nome - CódigoCurso - email”
+     * O formato da representaÃ§Ã£o do aluno Ã©:<br>
+	 * â€œMatricula - Nome - CÃ³digoCurso - telefone - emailâ€� <br>
+	 * Caso nÃ£o tenha telefone, a impressÃ£o do aluno deve ter o formato:<br>
+	 * â€œMatricula - Nome - CÃ³digoCurso - emailâ€�
      * @param matricula a matricula do aluno
-     * @return retorna a representação em String do aluno
+     * @return retorna a representaÃ§Ã£o em String do aluno
      */
     public String recuperaAluno(String matricula){
+    	verificaAluno(matricula, "Erro na busca por aluno: ");
     	return this.alunos.get(matricula).toString();
     }
     
     /**
      * Lista todos os alunos cadastrados
      * 
-     * @return retorna a lista com as representação em String dos alunos
+     * @return retorna a lista com as representaÃ§Ã£o em String dos alunos
      */
     public String listarAlunos(){
-    	ArrayList<Aluno> listAlunos = (ArrayList<Aluno>)alunos.values();
+    	ArrayList<Aluno> listAlunos = new ArrayList<>();
+    	for(Aluno a : alunos.values()) {
+    		listAlunos.add(a);
+    	}
     	Collections.sort(listAlunos);
-    	String listaAlunos = null;
-    	for(Aluno aluno : listAlunos){
-    		listaAlunos += aluno.toString() + System.lineSeparator();
+    	String listaAlunos = "";
+    	for(int i = 0; i < listAlunos.size(); i++) {
+    		listaAlunos += listAlunos.get(i).toString();
+    		if(i != listAlunos.size() - 1) {
+    			listaAlunos += ", ";
+    		}
     	}
     	return listaAlunos;
     }
     /**
-     * Pega a informação de um atributo do aluno
+     * Pega a informaÃ§Ã£o de um atributo do aluno
      * @param matricula a matricula do aluno
      * @param atributo o atributo do aluno (Nome, Telefone, Email, CodigoCurso)
      * @return retorna o valor do atributo do aluno
      */
     public String getInfoAluno(String matricula, String atributo){
+    	verificaAluno(matricula, "Erro na obtencao de informacao de aluno: ");
     	if(atributo.equals("Nome")){
     		return this.alunos.get(matricula).getNome();
     	}else if(atributo.equals("Email")){
     		return this.alunos.get(matricula).getEmail();
     	}else if(atributo.equals("CodigoCurso")){
-    		return this.alunos.get(matricula).getCodigoCurso();
+    		//return this.alunos.get(matricula).getCodigoCurso();
     	}else if(atributo.equals("Telefone")){
     		return this.alunos.get(matricula).getTelefone();
     	}
@@ -87,6 +101,9 @@ public class Sistema {
 	 * @param proficiencia a proficiencia da disciplina (1-5)
 	 */
     public void tornarTutor(String matricula, String disciplina, int proficiencia){
+    	if(!this.alunos.containsKey(matricula)) {
+    		throw new NullPointerException("Erro na definicao de papel: Tutor nao encontrado");
+    	}
     	this.alunos.get(matricula).tornaTutor(disciplina, proficiencia);
     }
     
@@ -96,29 +113,39 @@ public class Sistema {
      * @return retorna a 
      */
     public String recuperaTutor(String matricula){
+    	if(!this.alunos.containsKey(matricula)|| !this.alunos.get(matricula).ehTutor()) {
+    		throw new NullPointerException("Erro na busca por tutor: Tutor nao encontrado");
+    	}
     	return this.alunos.get(matricula).toString();
     }
     
     /**
      * Lista todos os tutores cadastrados no sistema
-     * @return retorna a representação em String do tutor
+     * @return retorna a representaÃ§Ã£o em String do tutor
      */
     public String listarTutores(){
-    	String listaTutores = null;
+    	String listaTutores = "";
+    	boolean i = true;
     	for(Aluno aluno : this.alunos.values()){
     		if(aluno.ehTutor()){
-    			listaTutores += aluno.toString() + System.lineSeparator();	
+    			if(i) {
+    				listaTutores += aluno.toString();	
+    				i = false;
+    			}else {
+    				listaTutores += ", " + aluno.toString();	
+    			}
     		}
        	}
     	return listaTutores;
     }
-    private Aluno recuperaPorEmail(String email){
+    
+    private Aluno recuperaPorEmail(String email, String msg){
     	for(Aluno aluno : this.alunos.values()){
-    		if(aluno.equals(email)){
+    		if(aluno.getEmail().equals(email)){
     			return aluno;
     		}
     	}
-    	return null;
+    	throw new NullPointerException(msg + "tutor nao cadastrado");    	
     }
     
     /**
@@ -128,7 +155,14 @@ public class Sistema {
      * @param dia o dia para cadastrar
      */
     public void cadastrarHorario(String email, String horario, String dia){
-    	this.recuperaPorEmail(email).cadastrarHorario( horario, dia);
+    	verificaEmail(email, "Erro no cadastrar horario: ");
+    	if(horario.trim().equals("")) {
+    		throw new IllegalArgumentException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+    	}
+    	if(dia.trim().equals("")) {
+    		throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+    	}
+    	this.recuperaPorEmail(email, "Erro no cadastrar horario: ").cadastrarHorario( horario, dia);
     }
     
     /**
@@ -137,7 +171,11 @@ public class Sistema {
      * @param local o local de atendimento para cadastrar
      */
     public void cadastrarLocalDeAtendimento(String email, String local){
-    	this.recuperaPorEmail(email).cadastrarLocalDeAtendimento(local);
+    	verificaEmail(email, "Erro no cadastrar local de atendimento: ");
+    	if(local.trim().equals("")) {
+    		throw new IllegalArgumentException("Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+    	}
+    	this.recuperaPorEmail(email, "Erro no cadastrar local de atendimento: ").cadastrarLocalDeAtendimento(local);
     }
     /**
      * Consulta se o horario existe para o tutor
@@ -147,7 +185,7 @@ public class Sistema {
      * @return retorna um valor boolean, true represetando que existe e false que nao
      */
     public boolean consultaHorario(String email, String horario, String dia){
-    	this.recuperaPorEmail(email).consultaHorario(horario,dia);
+    	return this.recuperaPorEmail(email, "Erro ao consultar horario de atendimento: ").consultaHorario(horario,dia);
     }
     
     /**
@@ -157,6 +195,18 @@ public class Sistema {
      * @return retorna um valor boolean, true represetando que existe e false que nao
      */
     public boolean consultaLocal(String email, String local){
-    	this.recuperaPorEmail(email).consultaLocal(local);
+    	return this.recuperaPorEmail(email, "Erro ao consultar local de atendimento: ").consultaLocal(local);
+    }
+    
+    private void verificaAluno(String matricula, String msg) {
+    	if(!alunos.containsKey(matricula)) {
+    		throw new NullPointerException(msg + "Aluno nao encontrado");
+    	}
+    }
+    
+    private void verificaEmail(String email, String msg) {
+    	if(email.trim().equals("")) {
+    		throw new IllegalArgumentException(msg + "email nao pode ser vazio ou em branco");
+    	}
     }
 }

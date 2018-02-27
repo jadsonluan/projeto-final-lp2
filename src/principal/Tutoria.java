@@ -36,8 +36,11 @@ public class Tutoria {
 	 *            é a proficiencia do tutor nessa disciplina
 	 */
 	public void cadastrarDisciplina(String disciplina, int proficiencia) {
+		if(this.disciplinas.containsKey(disciplina)) {
+			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
+		}
 		if ((proficiencia > 5) || (proficiencia < 1)) {
-			throw new IllegalArgumentException("Erro: Proficiência inválida. (1-5)");
+			throw new IllegalArgumentException("Erro na definicao de papel: Proficiencia invalida");
 
 		}
 		this.disciplinas.put(disciplina, proficiencia);
@@ -89,12 +92,13 @@ public class Tutoria {
 		if (this.horarios.containsKey(dia)) {
 			for (String horario : this.horarios.get(dia)) {
 				if (horario.equals(hora)) {
-					return false;
+					return true;
 				}
 			}
-			return true;
+			//return false;
 		}
-		throw new NoSuchElementException("Erro: Dia especificado não foi cadastrado.");
+		//throw new NoSuchElementException("Erro: Dia especificado não foi cadastrado.");
+		return false;
 	}
 
 	/**

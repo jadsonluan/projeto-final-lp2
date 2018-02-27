@@ -1,10 +1,10 @@
 package principal;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import easyaccept.EasyAccept;
+
 /**
  * 
-* @author Arthur de Lima Ferrão - 117110318
+* @author Arthur de Lima FerrÃ£o - 117110318
  */
 public class Facade {
 	private Sistema sistema;
@@ -29,12 +29,12 @@ public class Facade {
     
     /**
      * Recupera o aluno pela matricula
-     * O formato da representação do aluno é:<br>
-	 * “Matricula - Nome - CódigoCurso - telefone - email” <br>
-	 * Caso não tenha telefone, a impressão do aluno deve ter o formato:<br>
-	 * “Matricula - Nome - CódigoCurso - email”
+     * O formato da representaÃ§Ã£o do aluno Ã©:<br>
+	 * â€œMatricula - Nome - CÃ³digoCurso - telefone - emailâ€� <br>
+	 * Caso nÃ£o tenha telefone, a impressÃ£o do aluno deve ter o formato:<br>
+	 * â€œMatricula - Nome - CÃ³digoCurso - emailâ€�
      * @param matricula a matricula do aluno
-     * @return retorna a representação em String do aluno
+     * @return retorna a representaÃ§Ã£o em String do aluno
      */
     public String recuperaAluno(String matricula){
     	return this.sistema.recuperaAluno(matricula);
@@ -43,13 +43,13 @@ public class Facade {
     /**
      * Lista todos os alunos cadastrados
      * 
-     * @return retorna a lista com as representação em String dos alunos
+     * @return retorna a lista com as representaÃ§Ã£o em String dos alunos
      */
     public String listarAlunos(){
     	return this.sistema.listarAlunos();
     }
     /**
-     * Pega a informação de um atributo do aluno
+     * Pega a informaÃ§Ã£o de um atributo do aluno
      * @param matricula a matricula do aluno
      * @param atributo o atributo do aluno (Nome, Telefone, Email, CodigoCurso)
      * @return retorna o valor do atributo do aluno
@@ -80,7 +80,7 @@ public class Facade {
     
     /**
      * Lista todos os tutores cadastrados no sistema
-     * @return retorna a representação em String do tutor
+     * @return retorna a representaÃ§Ã£o em String do tutor
      */
     public String listarTutores(){
     	return this.sistema.listarTutores();
@@ -124,4 +124,10 @@ public class Facade {
     public boolean consultaLocal(String email, String local){
     	return this.sistema.consultaLocal(email, local);
     }
+    
+    public static void main(String[] args) {
+    		args = new String[] {"principal.Facade", "acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt"};
+    		EasyAccept.main(args);
+    	
+	}
 }
