@@ -110,10 +110,7 @@ public class Tutoria {
 	 *         estiver livre.
 	 */
 	public boolean consultaLocal(String local) {
-		if (locais.contains(local)) {
-			return true;
-		}
-		return false;
+		return locais.contains(local);
 	}
 
 }
