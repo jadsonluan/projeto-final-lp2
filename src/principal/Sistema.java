@@ -36,8 +36,11 @@ public class Sistema {
     	if(nome == null || nome.trim().equals("")) {
     		throw new IllegalArgumentException("Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
     	}
-   	
-    	this.alunos.put(matricula, new Aluno(matricula, nome, email, codigoCurso, telefone));
+    	if(telefone.trim().equals("")) {
+    		this.alunos.put(matricula, new Aluno(matricula, nome, email, codigoCurso));
+    	}else {
+    		this.alunos.put(matricula, new Aluno(matricula, nome, email, codigoCurso, telefone));
+    	}
     }
     
     /**

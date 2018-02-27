@@ -126,9 +126,10 @@ public class Aluno implements Comparable<Aluno> {
 		repr += " - " + nome;
 		repr += " - " + codigoCurso;
 
-		if (!telefone.equals(""))
+		if (telefone != null)
 			repr += " - " + telefone;
-
+		
+		
 		repr += " - " + email;
 		return repr;
 	}
