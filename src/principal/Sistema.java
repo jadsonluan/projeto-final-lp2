@@ -29,13 +29,14 @@ public class Sistema {
 	 * @param email o email do aluno
 	 */
     public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email){
+    	verificaEmailCadastroAluno(email, "Erro no cadastro de aluno: ");
     	if(alunos.containsKey(matricula)) {
     		throw new IllegalArgumentException("Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
     	}
     	if(nome == null || nome.trim().equals("")) {
     		throw new IllegalArgumentException("Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
     	}
-    	//verificaEmail(email, "Erro no cadastro de aluno: ");
+   	
     	this.alunos.put(matricula, new Aluno(matricula, nome, email, codigoCurso, telefone));
     }
     
@@ -207,6 +208,25 @@ public class Sistema {
     private void verificaEmail(String email, String msg) {
     	if(email.trim().equals("")) {
     		throw new IllegalArgumentException(msg + "email nao pode ser vazio ou em branco");
+    	}
+    }
+    
+    private void verificaEmailCadastroAluno(String email, String msg) {
+    	String inicioEmail = String.valueOf(email.charAt(0));
+    	String fimEmail = String.valueOf(email.charAt(email.length() - 1));
+    	if(inicioEmail.equals("@") || fimEmail.equals("@")) {
+    		throw new IllegalArgumentException(msg + "Email invalido");
+    	}
+    	
+    	boolean temArroba = false;
+    	for(int i = 0; i < email.length(); i++) {
+    		if(String.valueOf(email.charAt(i)).equals("@")) {
+    			temArroba = true;
+    		}
+    	}
+    	
+    	if(!temArroba) {
+    		throw new IllegalArgumentException(msg + "Email invalido");
     	}
     }
 }
