@@ -7,23 +7,24 @@ import java.util.*;
  * 
  * @author Mateus Augusto Souza Santos
  */
-public class Tutoria {
-	HashMap<String, Integer> disciplinas;
-	double avaliacao;
-	HashSet<String> locais;
-	HashMap<String, ArrayList<String>> horarios;
-	int dinheiro;
+public class Tutor {
+	private Map<String, Integer> disciplinas;
+	private double avaliacao;
+	private Set<String> locais;
+	private Map<String, ArrayList<String>> horarios;
+	private int dinheiro;
+	private Aluno aluno;
 
 	/**
 	 * Construtor de uma tutoria
 	 */
-	public Tutoria() {
+	public Tutor(Aluno aluno) {
+		this.aluno = aluno;
 		this.disciplinas = new HashMap<String, Integer>();
 		this.avaliacao = 4;
 		this.locais = new HashSet<String>();
 		this.horarios = new HashMap<String, ArrayList<String>>();
 		this.dinheiro = 0;
-
 	}
 
 	/**
@@ -95,9 +96,7 @@ public class Tutoria {
 					return true;
 				}
 			}
-			//return false;
 		}
-		//throw new NoSuchElementException("Erro: Dia especificado não foi cadastrado.");
 		return false;
 	}
 
@@ -111,6 +110,10 @@ public class Tutoria {
 	 */
 	public boolean consultaLocal(String local) {
 		return locais.contains(local);
+	}
+
+	public Aluno getAluno() {
+		return aluno;
 	}
 
 }

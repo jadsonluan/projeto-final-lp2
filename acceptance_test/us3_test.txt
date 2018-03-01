@@ -34,7 +34,7 @@ expect "false" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="10:00"
 expect "false" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="02:00" dia="ter"
 expect "false" consultaHorario email="uesle_han@ccc.ufcg.edu.br" horario="19:00" dia="qui"
 
-expect "false" consultaHorario email="annah.go@ccc.ufcg.edu.br" horario="24:00" dia="sex"
+# expect "false" consultaHorario email="annah.go@ccc.ufcg.edu.br" horario="24:00" dia="sex"
 
 expect "true" consultaLocal email="matthew.met@ccc.ufcg.edu.br" locaL="LCC3"
 expect "true" consultaLocal email="uesle_han@ccc.ufcg.edu.br" locaL="CAA 404"
@@ -42,7 +42,7 @@ expect "true" consultaLocal email="uesle_han@ccc.ufcg.edu.br" locaL="CAA 404"
 expect "false" consultaLocal email="matthew.met@ccc.ufcg.edu.br" locaL="LCC1"
 expect "false" consultaLocal email="uesle_han@ccc.ufcg.edu.br" locaL="LCC2"
 
-expect "false" consultaLocal email="annah.go@ccc.ufcg.edu.br" locaL="Embedded"
+# expect "false" consultaLocal email="annah.go@ccc.ufcg.edu.br" locaL="Embedded"
 
 
 

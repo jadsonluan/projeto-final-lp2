@@ -11,7 +11,7 @@ public class Aluno implements Comparable<Aluno> {
 	private String email;
 	private int codigoCurso;
 	private String telefone;
-	private Tutoria tutoria;
+	private Tutor tutoria;
 
 	/**
 	 * ConstrÃ³i um aluno (com telefone).
@@ -51,30 +51,6 @@ public class Aluno implements Comparable<Aluno> {
 	 */
 	public Aluno(String matricula, String nome, String email, int codigoCurso) {
 		this(matricula, nome, email, codigoCurso, null);
-	}
-
-	/**
-	 * Torna o aluno tutor de uma disciplina
-	 * 
-	 * @param disciplina
-	 *            disciplina da tutoria
-	 * @param proficiencia
-	 *            proficiencia na disciplina (1-5)
-	 */
-	public void tornaTutor(String disciplina, int proficiencia) {
-		if (tutoria == null)
-			tutoria = new Tutoria();
-
-		tutoria.cadastrarDisciplina(disciplina, proficiencia);
-	}
-
-	/**
-	 * Verifica se o aluno Ã© um tutor
-	 * 
-	 * @return true: Ã© tutor. false: nÃ£o Ã© tutor
-	 */
-	public boolean ehTutor() {
-		return tutoria != null;
 	}
 
 	/**
@@ -132,64 +108,6 @@ public class Aluno implements Comparable<Aluno> {
 		
 		repr += " - " + email;
 		return repr;
-	}
-
-	/**
-	 * Cadastra um horÃ¡rio dentro de um dia especÃ­fico.
-	 * 
-	 * @param hora
-	 *            Ã© a hora que deseja-se cadastrar
-	 * @param dia
-	 *            Ã© o dia que deseja-se cadastrar a hora
-	 */
-	public void cadastrarHorario(String hora, String dia) {
-		if (tutoria != null) {
-			tutoria.cadastrarHorario(hora, dia);
-		}
-	}
-
-	/**
-	 * Cadastra um novo local de atendimento do tutor
-	 * 
-	 * @param local
-	 *            Ã© o local de atendimento a ser cadastrado.
-	 */
-	public void cadastrarLocalDeAtendimento(String local) {
-		if (tutoria != null) {
-			tutoria.cadastrarLocalDeAtendimento(local);
-		}
-	}
-
-	/**
-	 * Consulta se o horario do tutor estÃ¡ livre ou ocupado.
-	 * 
-	 * @param hora
-	 *            Ã© a hora que deseja-se consultar
-	 * @param dia
-	 *            Ã© o dia que deseja-se consultar
-	 * @return retorna boolean true se o horÃ¡rio estiver livre. Retorna false se
-	 *         nÃ£o.
-	 */
-	public boolean consultaHorario(String hora, String dia) {
-		if (tutoria != null) {
-			return tutoria.consultaHorario(hora, dia);
-		}
-		return false;
-	}
-
-	/**
-	 * Consulta se o tutor estarÃ¡ em um local especÃ­fico
-	 * 
-	 * @param local
-	 *            Ã© o local que deseja-se consultar
-	 * @return retorna o boolean true se o local estiver ocupado. Retorna false se
-	 *         estiver livre.
-	 */
-	public boolean consultaLocal(String local) {
-		if (tutoria != null) {
-			return tutoria.consultaLocal(local);
-		}
-		return false;
 	}
 
 	@Override
