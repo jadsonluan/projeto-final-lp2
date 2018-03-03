@@ -37,7 +37,7 @@ public class Tutor {
 	 *            é a proficiencia do tutor nessa disciplina
 	 */
 	public void cadastrarDisciplina(String disciplina, int proficiencia) {
-		if(this.disciplinas.containsKey(disciplina)) {
+		if (this.disciplinas.containsKey(disciplina)) {
 			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
 		}
 		if ((proficiencia > 5) || (proficiencia < 1)) {
@@ -112,8 +112,54 @@ public class Tutor {
 		return locais.contains(local);
 	}
 
+	/**
+	 * Retorna o aluno com a funçao de tutor
+	 * 
+	 * @return Objeto Aluno
+	 */
 	public Aluno getAluno() {
 		return aluno;
+	}
+
+	/**
+	 * Metodo que avalia o tutor atraves de uma nota dada.
+	 * 
+	 * @param nota
+	 *            inteiro da nota que sera utilizada para avaliar o tutor
+	 * @return retorna a nota do tutor apos a avaliacao
+	 */
+	public String avaliacaoTutor(int nota) {
+		if ((nota > 5) || (nota < 0)) {
+			throw new IllegalArgumentException("Erro: Nota inválida.");
+		}
+		this.avaliacao = ((this.avaliacao * 5 + nota) / 6);
+		return (String.valueOf(this.avaliacao));
+	}
+
+	/**
+	 * Retorna a nota do Tutor
+	 * 
+	 * @return int nota do tutor
+	 */
+	public double getNota() {
+		return this.avaliacao;
+	}
+
+	/**
+	 * Metodo que retorna o nivel do Tutor.
+	 * 
+	 * @return String "TOP" se o nivel for acima de 4.5; "Tutor" se for entre 4.5 e
+	 *         3; "Aprendiz" se for menor que 3"
+	 */
+	public String getNivel() {
+
+		if (this.avaliacao > 4.5) {
+			return "TOP";
+		} else if ((this.avaliacao <= 4.5) && (this.avaliacao > 3)) {
+			return "Tutor";
+		} else {
+			return "Aprendiz";
+		}
 	}
 
 }
