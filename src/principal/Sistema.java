@@ -276,4 +276,27 @@ public class Sistema {
 			throw new IllegalArgumentException(msg + "Email invalido");
 		}
 	}
+	/**
+	 * Pega a nota de um tutor especifico, a partir de sua matricula
+	 * @param matriculaTutor matricula do tutor que deseja-se consultar
+	 * @return double nota do tutor especificado
+	 */
+	public double pegarNota(String matriculaTutor) {
+		if (tutores.containsKey(matriculaTutor)) {
+			return tutores.get(matriculaTutor).getNota();
+		}
+		throw new IllegalArgumentException("Erro: Matricula invalida");
+	}
+	/**
+	 * Pega o nivel de um tutor especifico, a partir de sua matricula
+	 * @param matriculaTutor matricula do tutor que deseja-se consultar
+	 * @return String nivel do tutor especificado
+	 */
+	public String pegarNivel(String matriculaTutor) {
+		if (tutores.containsKey(matriculaTutor)) {
+			return tutores.get(matriculaTutor).getNivel();
+		}
+		throw new IllegalArgumentException("Erro: Matricula invalida");
+	}
+	
 }
