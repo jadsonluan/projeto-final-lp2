@@ -125,6 +125,23 @@ public class Facade {
     	return this.sistema.consultaLocal(email, local);
     }
     
+    public String pegarNivel(String matriculaTutor) {
+		return this.sistema.pegarNivel(matriculaTutor);
+	}
+	
+	public int pedirAjudaPresencial (String matrAluno, String matrTutor, String disciplina, String horario, String dia, String localInteresse){
+    	return this.sistema.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia, localInteresse);
+    }
+    public int pedirAjudaOnline (String matrAluno, String matrTutor, String disciplina){
+    	return this.sistema.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
+    }
+    public String pegarTutor(int idAjuda){
+    	return this.sistema.pegarTutor(idAjuda);
+    }
+    public String getInfoAjuda(int idAjuda, String atributo){
+    	return this.sistema.getInfoAjuda(idAjuda, atributo);
+    }
+    
     public static void main(String[] args) {
     		args = new String[] {"principal.Facade", "acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt"};
     		EasyAccept.main(args);

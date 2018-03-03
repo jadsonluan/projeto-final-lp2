@@ -14,6 +14,7 @@ import java.util.Collections;
 public class Sistema {
 	private AlunoController alunoController;
 	private TutorController tutorController;
+	private AjudaController ajudaController;
 
 	/**
 	 * Cria uma objeto Sistema
@@ -21,6 +22,7 @@ public class Sistema {
 	public Sistema() {
 		this.alunoController = new AlunoController();
 		this.tutorController = new TutorController();
+		this.ajudaController = new AjudaController();
 	}
 
 	/**
@@ -187,5 +189,19 @@ public class Sistema {
 	public String pegarNivel(String matriculaTutor) {
 		return this.tutorController.pegarNivel(matriculaTutor);
 	}
+	
+	public int pedirAjudaPresencial (String matrAluno, String matrTutor, String disciplina, String horario, String dia, String localInteresse){
+    	return this.ajudaController.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia, localInteresse);
+    }
+    public int pedirAjudaOnline (String matrAluno, String matrTutor, String disciplina){
+    	return this.ajudaController.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
+    }
+    public String pegarTutor(int idAjuda){
+    	String matricula = this.ajudaController.pegarTutor(idAjuda);
+    	return this.tutorController.recuperaTutor(matricula);
+    }
+    public String getInfoAjuda(int idAjuda, String atributo){
+    	return this.ajudaController.getInfoAjuda(idAjuda, atributo);
+    }
 	
 }
