@@ -11,7 +11,6 @@ public class Aluno implements Comparable<Aluno> {
 	private String email;
 	private int codigoCurso;
 	private String telefone;
-	private Tutor tutoria;
 
 	/**
 	 * ConstrÃ³i um aluno (com telefone).
