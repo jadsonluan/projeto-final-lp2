@@ -211,6 +211,15 @@ public class Sistema {
 		String matricula = this.ajudaController.pegarTutor(idAjuda);
 		return this.tutorController.recuperaTutor(matricula);
 	}
+	/**
+	 * Avalia um tutor a partir do seu idAjuda especifico e de uma nota escolhida pelo aluno
+	 * @param idAjuda int com o id de ajuda do tutor
+	 * @param nota eh a nota que o aluno dara ao tutor
+	 * @return String contendo a nota atual do tutor especificado
+	 */
+	public String avaliarTutor(int idAjuda, int nota) {
+		return (this.tutorController.recuperaTutorPorMatricula(this.ajudaController.pegarTutor(idAjuda)).avaliacaoTutor(nota));
+	}
 
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return this.ajudaController.getInfoAjuda(idAjuda, atributo);

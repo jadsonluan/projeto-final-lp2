@@ -199,4 +199,16 @@ public class TutorController {
 		}
 		return melhorTutor.getAluno().getMatricula();
 	}
+	/**
+	 * Recupera um tutor a partir da sua matricula
+	 * @param matricula eh a matricula do tutor especifico
+	 * @return o tutor especificado pela matricula
+	 */
+	public Tutor recuperaTutorPorMatricula(String matricula) {
+		if (this.tutores.containsKey(matricula)) {
+			return this.tutores.get(matricula);
+		}
+		throw new IllegalArgumentException("Tutor inexistente");
+		
+	}
 }

@@ -147,4 +147,12 @@ public class Facade {
     		EasyAccept.main(args);
     	
 	}
+    public String avaliarTutor(int idAjuda, int nota) {
+    	return this.sistema.avaliarTutor(idAjuda, nota);
+    }
+    public double pegarNota(String matriculaTutor) {
+    	return this.sistema.pegarNota(matriculaTutor);
+    	
+    }
+    
 }
