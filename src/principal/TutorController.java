@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Collections;
 
-
-
-
-
 public class TutorController {
 	
 	private Map<String, Tutor> tutores;
@@ -43,6 +39,7 @@ public class TutorController {
 		if (!this.tutores.containsKey(matricula)) {
 			throw new NullPointerException("Erro na busca por tutor: Tutor nao encontrado");
 		}
+		
 		return this.tutores.get(matricula).getAluno().toString();
 	}
 
@@ -82,13 +79,19 @@ public class TutorController {
 	 *            o dia para cadastrar
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		verificaEmail(email, "Erro no cadastrar horario: ");
+		try {
+			verificaEmail(email);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Erro no cadastrar horario: " + iae.getMessage());
+		}
+		
 		if (horario.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
 		}
 		if (dia.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
 		}
+		
 		this.recuperaTutorPorEmail(email, "Erro no cadastrar horario: ").cadastrarHorario(horario, dia);
 	}
 
@@ -101,11 +104,17 @@ public class TutorController {
 	 *            o local de atendimento para cadastrar
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		verificaEmail(email, "Erro no cadastrar local de atendimento: ");
+		try {
+			verificaEmail(email);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Erro no cadastrar local de atendimento: " + iae.getMessage());
+		}
+		
 		if (local.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
 		}
+		
 		this.recuperaTutorPorEmail(email, "Erro no cadastrar local de atendimento: ")
 				.cadastrarLocalDeAtendimento(local);
 	}
@@ -141,9 +150,9 @@ public class TutorController {
 		return this.recuperaTutorPorEmail(email, "Erro ao consultar local de atendimento: ").consultaLocal(local);
 	}
 
-	private void verificaEmail(String email, String msg) {
+	private void verificaEmail(String email) {
 		if (email.trim().equals("")) {
-			throw new IllegalArgumentException(msg + "email nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("email nao pode ser vazio ou em branco");
 		}
 	}
 	
@@ -153,10 +162,11 @@ public class TutorController {
 	 * @return double nota do tutor especificado
 	 */
 	public double pegarNota(String matriculaTutor) {
-		if (tutores.containsKey(matriculaTutor)) {
-			return tutores.get(matriculaTutor).getNota();
+		if (!tutores.containsKey(matriculaTutor)) {
+			throw new IllegalArgumentException("Erro: Matricula invalida");
 		}
-		throw new IllegalArgumentException("Erro: Matricula invalida");
+		
+		return tutores.get(matriculaTutor).getNota();
 	}
 	/**
 	 * Pega o nivel de um tutor especifico, a partir de sua matricula
@@ -164,10 +174,11 @@ public class TutorController {
 	 * @return String nivel do tutor especificado
 	 */
 	public String pegarNivel(String matriculaTutor) {
-		if (tutores.containsKey(matriculaTutor)) {
-			return tutores.get(matriculaTutor).getNivel();
+		if (!tutores.containsKey(matriculaTutor)) {
+			throw new IllegalArgumentException("Erro: Matricula invalida");
 		}
-		throw new IllegalArgumentException("Erro: Matricula invalida");
+		
+		return tutores.get(matriculaTutor).getNivel();
 	}
 	
 	public String getTutorAjuda(String disciplina,String horario, String dia, String local){
@@ -176,12 +187,14 @@ public class TutorController {
 		//pegando a lista invertida resolvo o problema de empate que tem q pegar o primeiro cadastrado
 		List<Tutor> invertida = new ArrayList<Tutor>(this.tutores.values()); 
 		Collections.reverse(invertida);
+		
 		for(Tutor tutor: invertida){
 			if(tutor.getNota()>maior && tutor.consultaDisciplina(disciplina) && tutor.consultaLocal(local) && tutor.consultaHorario(horario, dia)){
 				melhorTutor = tutor;
 				maior = tutor.getNota();
 			}
 		}
+		
 		return melhorTutor.getAluno().getMatricula();
 	}
 	
@@ -191,12 +204,14 @@ public class TutorController {
 		//pegando a lista invertida resolvo o problema de empate que tem q pegar o primeiro cadastrado
 		List<Tutor> invertida = new ArrayList<Tutor>(this.tutores.values()); 
 		Collections.reverse(invertida);
+		
 		for(Tutor tutor: invertida){
 			if(tutor.getNota()>maior && tutor.consultaDisciplina(disciplina)){
 				melhorTutor = tutor;
 				maior = tutor.getNota();
 			}
 		}
+		
 		return melhorTutor.getAluno().getMatricula();
 	}
 	/**
@@ -205,10 +220,10 @@ public class TutorController {
 	 * @return o tutor especificado pela matricula
 	 */
 	public Tutor recuperaTutorPorMatricula(String matricula) {
-		if (this.tutores.containsKey(matricula)) {
-			return this.tutores.get(matricula);
+		if (!this.tutores.containsKey(matricula)) {
+			throw new IllegalArgumentException("Tutor inexistente");
 		}
-		throw new IllegalArgumentException("Tutor inexistente");
-		
+
+		return this.tutores.get(matricula);
 	}
 }

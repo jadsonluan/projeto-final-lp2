@@ -19,23 +19,26 @@ public class AlunoController {
 		if (!this.alunos.containsKey(matricula)) {
 			throw new NullPointerException("Erro na definicao de papel: Tutor nao encontrado");
 		}
+		
 		return this.alunos.get(matricula);
 	}
 	
-	private void verificaAluno(String matricula, String msg) {
+	private void verificaAluno(String matricula) {
 		if (!alunos.containsKey(matricula)) {
-			throw new NullPointerException(msg + "Aluno nao encontrado");
+			throw new NullPointerException("Aluno nao encontrado");
 		}
 	}
 	
-	private void verificaEmailCadastroAluno(String email, String msg) {
+	private void verificaEmailCadastroAluno(String email) {
 		String inicioEmail = String.valueOf(email.charAt(0));
 		String fimEmail = String.valueOf(email.charAt(email.length() - 1));
+		
 		if (inicioEmail.equals("@") || fimEmail.equals("@")) {
-			throw new IllegalArgumentException(msg + "Email invalido");
+			throw new IllegalArgumentException("Email invalido");
 		}
 
 		boolean temArroba = false;
+		
 		for (int i = 0; i < email.length(); i++) {
 			if (String.valueOf(email.charAt(i)).equals("@")) {
 				temArroba = true;
@@ -43,7 +46,7 @@ public class AlunoController {
 		}
 
 		if (!temArroba) {
-			throw new IllegalArgumentException(msg + "Email invalido");
+			throw new IllegalArgumentException("Email invalido");
 		}
 	}
 	/**
@@ -61,13 +64,20 @@ public class AlunoController {
 	 *            o email do aluno
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		verificaEmailCadastroAluno(email, "Erro no cadastro de aluno: ");
+		try {
+			verificaEmailCadastroAluno(email);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Erro no cadastro de aluno: " + iae.getMessage());
+		}
+		
 		if (alunos.containsKey(matricula)) {
 			throw new IllegalArgumentException("Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
 		}
+		
 		if (nome == null || nome.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
 		}
+		
 		if (telefone.trim().equals("")) {
 			this.alunos.put(matricula, new Aluno(matricula, nome, email, codigoCurso));
 		} else {
@@ -86,7 +96,12 @@ public class AlunoController {
 	 * @return retorna a representaÃ§Ã£o em String do aluno
 	 */
 	public String recuperaAluno(String matricula) {
-		verificaAluno(matricula, "Erro na busca por aluno: ");
+		try {
+			verificaAluno(matricula);
+		} catch (NullPointerException npe) {
+			throw new NullPointerException("Erro na busca por aluno: " + npe.getMessage());
+		}
+		
 		return this.alunos.get(matricula).toString();
 	}
 
@@ -97,11 +112,14 @@ public class AlunoController {
 	 */
 	public String listarAlunos() {
 		ArrayList<Aluno> listAlunos = new ArrayList<>();
+		
 		for (Aluno a : alunos.values()) {
 			listAlunos.add(a);
 		}
+		
 		Collections.sort(listAlunos);
 		String listaAlunos = "";
+		
 		for (int i = 0; i < listAlunos.size(); i++) {
 			listaAlunos += listAlunos.get(i).toString();
 			if (i != listAlunos.size() - 1) {
@@ -121,7 +139,12 @@ public class AlunoController {
 	 * @return retorna o valor do atributo do aluno
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		verificaAluno(matricula, "Erro na obtencao de informacao de aluno: ");
+		try {
+			verificaAluno(matricula);
+		} catch (NullPointerException npe) {
+			throw new NullPointerException("Erro na obtencao de informacao de aluno: " + npe.getMessage());
+		}
+		
 		if (atributo.equals("Nome")) {
 			return this.alunos.get(matricula).getNome();
 		} else if (atributo.equals("Email")) {
@@ -131,6 +154,7 @@ public class AlunoController {
 		} else if (atributo.equals("Telefone")) {
 			return this.alunos.get(matricula).getTelefone();
 		}
+		
 		return null;
 	}
 
