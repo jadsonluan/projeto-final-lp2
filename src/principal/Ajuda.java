@@ -19,7 +19,7 @@ public abstract class Ajuda {
 
 	public String getInfo(String atributo){
 		String valor = null;
-		if(atributo.equals("mastrAluno")){
+		if(atributo.equals("matrAluno")){
 			valor = this.matrAluno;
 		}else if(atributo.equals("disciplina")){
 			valor = this.disciplina;

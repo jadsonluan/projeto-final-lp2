@@ -39,8 +39,10 @@ public class Sistema {
 	 * @param email
 	 *            o email do aluno
 	 */
-	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		this.alunoController.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+	public void cadastrarAluno(String nome, String matricula, int codigoCurso,
+			String telefone, String email) {
+		this.alunoController.cadastrarAluno(nome, matricula, codigoCurso,
+				telefone, email);
 	}
 
 	/**
@@ -89,9 +91,11 @@ public class Sistema {
 	 * @param proficiencia
 	 *            a proficiencia da disciplina (1-5)
 	 */
-	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina,
+			int proficiencia) {
 		Aluno aluno = alunoController.getAluno(matricula);
-		this.tutorController.tornarTutor(matricula,aluno, disciplina, proficiencia);
+		this.tutorController.tornarTutor(matricula, aluno, disciplina,
+				proficiencia);
 	}
 
 	/**
@@ -113,8 +117,6 @@ public class Sistema {
 	public String listarTutores() {
 		return this.tutorController.listarTutores();
 	}
-
-	
 
 	/**
 	 * Cadastra um horario para o tutor
@@ -151,8 +153,8 @@ public class Sistema {
 	 *            o horario para consulta
 	 * @param dia
 	 *            o dia para consulta
-	 * @return retorna um valor boolean, true represetando que existe e false que
-	 *         nao
+	 * @return retorna um valor boolean, true represetando que existe e false
+	 *         que nao
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		return this.tutorController.consultaHorario(email, horario, dia);
@@ -165,43 +167,53 @@ public class Sistema {
 	 *            o email do tutor
 	 * @param local
 	 *            o local para ser consultado
-	 * @return retorna um valor boolean, true represetando que existe e false que
-	 *         nao
+	 * @return retorna um valor boolean, true represetando que existe e false
+	 *         que nao
 	 */
 	public boolean consultaLocal(String email, String local) {
 		return this.tutorController.consultaLocal(email, local);
 	}
 
-	
 	/**
 	 * Pega a nota de um tutor especifico, a partir de sua matricula
-	 * @param matriculaTutor matricula do tutor que deseja-se consultar
+	 * 
+	 * @param matriculaTutor
+	 *            matricula do tutor que deseja-se consultar
 	 * @return double nota do tutor especificado
 	 */
 	public double pegarNota(String matriculaTutor) {
 		return this.tutorController.pegarNota(matriculaTutor);
 	}
+
 	/**
 	 * Pega o nivel de um tutor especifico, a partir de sua matricula
-	 * @param matriculaTutor matricula do tutor que deseja-se consultar
+	 * 
+	 * @param matriculaTutor
+	 *            matricula do tutor que deseja-se consultar
 	 * @return String nivel do tutor especificado
 	 */
 	public String pegarNivel(String matriculaTutor) {
 		return this.tutorController.pegarNivel(matriculaTutor);
 	}
-	
-	public int pedirAjudaPresencial (String matrAluno, String matrTutor, String disciplina, String horario, String dia, String localInteresse){
-    	return this.ajudaController.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia, localInteresse);
-    }
-    public int pedirAjudaOnline (String matrAluno, String matrTutor, String disciplina){
-    	return this.ajudaController.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
-    }
-    public String pegarTutor(int idAjuda){
-    	String matricula = this.ajudaController.pegarTutor(idAjuda);
-    	return this.tutorController.recuperaTutor(matricula);
-    }
-    public String getInfoAjuda(int idAjuda, String atributo){
-    	return this.ajudaController.getInfoAjuda(idAjuda, atributo);
-    }
-	
+
+
+	public int pedirAjudaPresencial(String matrAluno, String disciplina,String horario, String dia, String localInteresse) {
+		String matrTutor = this.tutorController.getTutorAjuda(disciplina, horario, dia, localInteresse);
+		return this.ajudaController.pedirAjudaPresencial(matrAluno, matrTutor,disciplina, horario, dia, localInteresse);
+	}
+
+	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		String matrTutor = this.tutorController.getTutorAjuda(disciplina);
+		return this.ajudaController.pedirAjudaOnline(matrAluno, matrTutor,disciplina);
+	}
+
+	public String pegarTutor(int idAjuda) {
+		String matricula = this.ajudaController.pegarTutor(idAjuda);
+		return this.tutorController.recuperaTutor(matricula);
+	}
+
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return this.ajudaController.getInfoAjuda(idAjuda, atributo);
+	}
+
 }

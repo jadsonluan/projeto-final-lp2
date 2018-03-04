@@ -20,11 +20,11 @@ public class AjudaPresencial extends Ajuda {
 		String valor = null;
 		valor = super.getInfo(atributo);
 		if(valor == null){
-			if(atributo.equals("Local")){
+			if(atributo.equals("localInteresse")){
 				valor = this.local;
-			}else if(atributo.equals("Dia")){
+			}else if(atributo.equals("dia")){
 				valor = this.dia;
-			}else if(atributo.equals("Hora")){
+			}else if(atributo.equals("horario")){
 				valor = this.hora;
 			}
 		}

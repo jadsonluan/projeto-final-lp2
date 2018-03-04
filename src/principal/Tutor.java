@@ -38,10 +38,12 @@ public class Tutor {
 	 */
 	public void cadastrarDisciplina(String disciplina, int proficiencia) {
 		if (this.disciplinas.containsKey(disciplina)) {
-			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
+			throw new IllegalArgumentException(
+					"Erro na definicao de papel: Ja eh tutor dessa disciplina");
 		}
 		if ((proficiencia > 5) || (proficiencia < 1)) {
-			throw new IllegalArgumentException("Erro na definicao de papel: Proficiencia invalida");
+			throw new IllegalArgumentException(
+					"Erro na definicao de papel: Proficiencia invalida");
 
 		}
 		this.disciplinas.put(disciplina, proficiencia);
@@ -105,11 +107,15 @@ public class Tutor {
 	 * 
 	 * @param local
 	 *            é o local que deseja-se consultar
-	 * @return retorna o boolean true se o local estiver ocupado. Retorna false se
-	 *         estiver livre.
+	 * @return retorna o boolean true se o local estiver ocupado. Retorna false
+	 *         se estiver livre.
 	 */
 	public boolean consultaLocal(String local) {
 		return locais.contains(local);
+	}
+
+	public boolean consultaDisciplina(String disciplina) {
+		return this.disciplinas.containsKey(disciplina);
 	}
 
 	/**
@@ -148,8 +154,8 @@ public class Tutor {
 	/**
 	 * Metodo que retorna o nivel do Tutor.
 	 * 
-	 * @return String "TOP" se o nivel for acima de 4.5; "Tutor" se for entre 4.5 e
-	 *         3; "Aprendiz" se for menor que 3"
+	 * @return String "TOP" se o nivel for acima de 4.5; "Tutor" se for entre
+	 *         4.5 e 3; "Aprendiz" se for menor que 3"
 	 */
 	public String getNivel() {
 

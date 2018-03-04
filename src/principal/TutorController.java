@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
+
+
+
+
 
 public class TutorController {
 	
@@ -163,5 +168,35 @@ public class TutorController {
 			return tutores.get(matriculaTutor).getNivel();
 		}
 		throw new IllegalArgumentException("Erro: Matricula invalida");
+	}
+	
+	public String getTutorAjuda(String disciplina,String horario, String dia, String local){
+		double maior = 0;
+		Tutor melhorTutor = null;
+		//pegando a lista invertida resolvo o problema de empate que tem q pegar o primeiro cadastrado
+		List<Tutor> invertida = new ArrayList<Tutor>(this.tutores.values()); 
+		Collections.reverse(invertida);
+		for(Tutor tutor: invertida){
+			if(tutor.getNota()>maior && tutor.consultaDisciplina(disciplina) && tutor.consultaLocal(local) && tutor.consultaHorario(horario, dia)){
+				melhorTutor = tutor;
+				maior = tutor.getNota();
+			}
+		}
+		return melhorTutor.getAluno().getMatricula();
+	}
+	
+	public String getTutorAjuda(String disciplina){
+		double maior = 0;
+		Tutor melhorTutor = null;
+		//pegando a lista invertida resolvo o problema de empate que tem q pegar o primeiro cadastrado
+		List<Tutor> invertida = new ArrayList<Tutor>(this.tutores.values()); 
+		Collections.reverse(invertida);
+		for(Tutor tutor: invertida){
+			if(tutor.getNota()>maior && tutor.consultaDisciplina(disciplina)){
+				melhorTutor = tutor;
+				maior = tutor.getNota();
+			}
+		}
+		return melhorTutor.getAluno().getMatricula();
 	}
 }

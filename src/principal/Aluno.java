@@ -116,4 +116,8 @@ public class Aluno implements Comparable<Aluno> {
 	public int compareTo(Aluno other) {
 		return this.nome.compareTo(other.nome);
 	}
+
+	public String getMatricula() {
+		return matricula;
+	}
 }

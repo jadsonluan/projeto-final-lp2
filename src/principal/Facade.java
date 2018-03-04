@@ -129,11 +129,11 @@ public class Facade {
 		return this.sistema.pegarNivel(matriculaTutor);
 	}
 	
-	public int pedirAjudaPresencial (String matrAluno, String matrTutor, String disciplina, String horario, String dia, String localInteresse){
-    	return this.sistema.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia, localInteresse);
+	public int pedirAjudaPresencial (String matrAluno,  String disciplina, String horario, String dia, String localInteresse){
+    	return this.sistema.pedirAjudaPresencial(matrAluno,  disciplina, horario, dia, localInteresse);
     }
-    public int pedirAjudaOnline (String matrAluno, String matrTutor, String disciplina){
-    	return this.sistema.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
+    public int pedirAjudaOnline (String matrAluno, String disciplina){
+    	return this.sistema.pedirAjudaOnline(matrAluno, disciplina);
     }
     public String pegarTutor(int idAjuda){
     	return this.sistema.pegarTutor(idAjuda);
