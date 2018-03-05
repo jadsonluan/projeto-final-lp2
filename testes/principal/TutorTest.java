@@ -1,4 +1,4 @@
-package testes;
+package principal;
 
 import principal.Aluno;
 import principal.Tutor;

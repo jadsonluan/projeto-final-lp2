@@ -1,4 +1,4 @@
-package testes;
+package principal;
 
 import static org.junit.Assert.*;
 import principal.Sistema;
