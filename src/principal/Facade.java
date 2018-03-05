@@ -193,5 +193,38 @@ public class Facade {
 		return this.sistema.pegarNota(matriculaTutor);
 
 	}
+	
+	/**
+	 * Efetua uma doacao a um tutor especifico, este fica com uma taxa do dinheiro
+	 * doado e o restante e direcionado ao caixa do sistema
+	 * 
+	 * @param matriculaTutor
+	 *            matricula do tutor que recebera a doacao
+	 * @param totalCentavos
+	 *            valor doado
+	 */
+	public void doar(String matriculaTutor, int totalCentavos) {
+		sistema.doar(matriculaTutor, totalCentavos);
+	}
+
+	/**
+	 * Retorna o dinheiro armazenado pelo sistema
+	 * 
+	 * @return dinheiro armazenado pelo sistema
+	 */
+	public int totalDinheiroSistema() {
+		return sistema.totalDinheiroSistema();
+	}
+
+	/**
+	 * Retorna o dinheiro total recebido por um tutor
+	 * 
+	 * @param emailTutor
+	 *            email do tutor a ser verificado
+	 * @return dinheiro total recebido pelo tutor
+	 */
+	public int totalDinheiroTutor(String emailTutor) {
+		return sistema.totalDinheiroTutor(emailTutor);
+	}
 
 }

@@ -282,4 +282,25 @@ public class Sistema {
 		caixa.adicionaDinheiro(totalSistema);
 		tutorController.recebeDinheiro(matriculaTutor, totalTutor);
 	}
+
+	/**
+	 * Retorna o dinheiro armazenado pelo sistema
+	 * 
+	 * @return dinheiro armazenado pelo sistema
+	 */
+	public int totalDinheiroSistema() {
+		return this.caixa.getDinheiro();
+	}
+
+	/**
+	 * Retorna o dinheiro total recebido por um tutor
+	 * 
+	 * @param emailTutor
+	 *            email do tutor a ser verificado
+	 * @return dinheiro total recebido pelo tutor
+	 */
+	public int totalDinheiroTutor(String emailTutor) {
+		return tutorController.getDinheiroTutor(emailTutor);
+	}
+
 }

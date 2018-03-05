@@ -283,4 +283,8 @@ public class TutorController {
 	public void recebeDinheiro(String matricula, int dinheiro) {
 		recuperaTutorPorMatricula(matricula).recebeDinheiro(dinheiro);
 	}
+	
+	public int getDinheiroTutor(String emailTutor) {
+		return recuperaTutorPorEmail(emailTutor, "").getDinheiro();
+	}
 }

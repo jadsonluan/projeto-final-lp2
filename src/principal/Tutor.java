@@ -192,5 +192,9 @@ public class Tutor {
 	public void recebeDinheiro(int dinheiro) {
 		this.dinheiro += dinheiro;
 	}
+	
+	public int getDinheiro() {
+		return dinheiro;
+	}
 
 }
