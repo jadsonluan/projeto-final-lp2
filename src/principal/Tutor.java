@@ -38,12 +38,10 @@ public class Tutor {
 	 */
 	public void cadastrarDisciplina(String disciplina, int proficiencia) {
 		if (this.disciplinas.containsKey(disciplina)) {
-			throw new IllegalArgumentException(
-					"Erro na definicao de papel: Ja eh tutor dessa disciplina");
+			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
 		}
 		if ((proficiencia > 5) || (proficiencia < 1)) {
-			throw new IllegalArgumentException(
-					"Erro na definicao de papel: Proficiencia invalida");
+			throw new IllegalArgumentException("Erro na definicao de papel: Proficiencia invalida");
 
 		}
 		this.disciplinas.put(disciplina, proficiencia);
@@ -107,8 +105,8 @@ public class Tutor {
 	 * 
 	 * @param local
 	 *            Ã© o local que deseja-se consultar
-	 * @return retorna o boolean true se o local estiver ocupado. Retorna false
-	 *         se estiver livre.
+	 * @return retorna o boolean true se o local estiver ocupado. Retorna false se
+	 *         estiver livre.
 	 */
 	public boolean consultaLocal(String local) {
 		return locais.contains(local);
@@ -154,8 +152,8 @@ public class Tutor {
 	/**
 	 * Metodo que retorna o nivel do Tutor.
 	 * 
-	 * @return String "TOP" se o nivel for acima de 4.5; "Tutor" se for entre
-	 *         4.5 e 3; "Aprendiz" se for menor que 3"
+	 * @return String "TOP" se o nivel for acima de 4.5; "Tutor" se for entre 4.5 e
+	 *         3; "Aprendiz" se for menor que 3"
 	 */
 	public String getNivel() {
 
@@ -166,6 +164,25 @@ public class Tutor {
 		} else {
 			return "Aprendiz";
 		}
+	}
+
+	/**
+	 * Retorna a taxa que o tutor deve receber das doacoes feitas a ele
+	 * 
+	 * @return 0.90 (90%) + 0.01 (1%) por décimo acima de 4.5 (ex.: nota 4.7, ele
+	 *         recebe 0.92(92%)) se sua avalicao estiver acima de 4.5. 0.80 (80%) se
+	 *         3.0 < avaliacao <= 4.5. 0.40 (40%) - 0.01 (1%) por décimo abaixo de
+	 *         3.0 (exemplo, nota 2 ele recebe 0.30 (30%)) se a avaliacao <= 3.0
+	 */
+	public double getTaxaTutor() {
+		if (this.avaliacao <= 3.0) {
+			return 0.4 - (3.0 - this.avaliacao);
+		} else if (this.avaliacao <= 4.5) {
+			return 0.8;
+		} else {
+			return 0.9 + (5.0 - this.avaliacao);
+		}
+
 	}
 
 }
