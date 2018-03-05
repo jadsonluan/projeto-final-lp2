@@ -5,6 +5,7 @@ public abstract class Ajuda {
 	private String matrAluno;
 	private String matrTutor;
 	private String disciplina;
+	private boolean avaliada;
 
 	public Ajuda(int id, String matrAluno, String matrTutor, String disciplina) {
 		verificaDados(id, matrAluno, matrTutor, disciplina);
@@ -12,6 +13,7 @@ public abstract class Ajuda {
 		this.matrAluno = matrAluno;
 		this.matrTutor = matrTutor;
 		this.disciplina = disciplina;
+		this.avaliada = false;
 	}
 
 	private void verificaDados(int id, String matrAluno, String matrTutor, String disciplina) {
@@ -58,6 +60,14 @@ public abstract class Ajuda {
 
 	public String getTutor() {
 		return this.matrTutor;
+	}
+	
+	public boolean foiAvaliada() {
+		return this.avaliada;
+	}
+	
+	public void avalia() {
+		this.avaliada = true;
 	}
 
 	public String getDisciplina() {

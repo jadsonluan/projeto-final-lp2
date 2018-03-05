@@ -31,6 +31,17 @@ public class AjudaController {
 		String representacao = ajuda.pegarTutor();
 		return representacao;
 	}
+	
+	public void avalia(int idAjuda) {
+		verificaAjuda(idAjuda);
+		Ajuda ajuda = this.listaAjuda.get(idAjuda);
+		
+		if (ajuda.foiAvaliada()) {
+			throw new IllegalArgumentException("Ajuda ja avaliada");
+		}
+		
+		ajuda.avalia();
+	}
 
 	public String getMatriculaTutor(int idAjuda) {
 		verificaAjuda(idAjuda);

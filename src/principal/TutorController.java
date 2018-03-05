@@ -58,14 +58,14 @@ public class TutorController {
 		return String.join(", ", listaTutores);
 	}
 
-	private Tutor recuperaTutorPorEmail(String email, String msg) {
+	private Tutor recuperaTutorPorEmail(String email) {
 		for (Tutor tutor : this.tutores.values()) {
 			if (tutor.getAluno().getEmail().equals(email)) {
 				return tutor;
 			}
 		}
 
-		throw new NullPointerException(msg + "tutor nao cadastrado");
+		throw new IllegalArgumentException("tutor nao cadastrado");
 	}
 
 	/**
@@ -79,20 +79,9 @@ public class TutorController {
 	 *            o dia para cadastrar
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		try {
-			verificaEmail(email);
-		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: " + iae.getMessage());
-		}
-
-		if (horario.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
-		}
-		if (dia.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
-		}
-
-		this.recuperaTutorPorEmail(email, "Erro no cadastrar horario: ").cadastrarHorario(horario, dia);
+		verificaEmail(email);
+		verificaDados("lorem", horario, dia, "lorem");
+		this.recuperaTutorPorEmail(email).cadastrarHorario(horario, dia);
 	}
 
 	/**
@@ -104,19 +93,13 @@ public class TutorController {
 	 *            o local de atendimento para cadastrar
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		try {
-			verificaEmail(email);
-		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException("Erro no cadastrar local de atendimento: " + iae.getMessage());
-		}
+		verificaEmail(email);
 
 		if (local.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("local nao pode ser vazio ou em branco");
 		}
 
-		this.recuperaTutorPorEmail(email, "Erro no cadastrar local de atendimento: ")
-				.cadastrarLocalDeAtendimento(local);
+		this.recuperaTutorPorEmail(email).cadastrarLocalDeAtendimento(local);
 	}
 
 	/**
@@ -132,8 +115,7 @@ public class TutorController {
 	 *         nao
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return this.recuperaTutorPorEmail(email, "Erro ao consultar horario de atendimento: ").consultaHorario(horario,
-				dia);
+		return this.recuperaTutorPorEmail(email).consultaHorario(horario, dia);
 	}
 
 	/**
@@ -147,7 +129,7 @@ public class TutorController {
 	 *         nao
 	 */
 	public boolean consultaLocal(String email, String local) {
-		return this.recuperaTutorPorEmail(email, "Erro ao consultar local de atendimento: ").consultaLocal(local);
+		return this.recuperaTutorPorEmail(email).consultaLocal(local);
 	}
 
 	private void verificaEmail(String email) {
@@ -269,7 +251,11 @@ public class TutorController {
 	 * @return taxa da doacao que e direcionada ao tutor
 	 */
 	public double getTaxaTutor(String matricula) {
-		return recuperaTutorPorMatricula(matricula).getTaxaTutor();
+		try {
+			return recuperaTutorPorMatricula(matricula).getTaxaTutor();
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Tutor nao encontrado");
+		}
 	}
 
 	/**
@@ -281,10 +267,26 @@ public class TutorController {
 	 *            dinheiro direcionado
 	 */
 	public void recebeDinheiro(String matricula, int dinheiro) {
-		recuperaTutorPorMatricula(matricula).recebeDinheiro(dinheiro);
+		if (dinheiro < 0) {
+			throw new IllegalArgumentException("");
+		}
+		
+		try {
+			recuperaTutorPorMatricula(matricula).recebeDinheiro(dinheiro);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Tutor nao encontrado");
+		}
 	}
-	
+
 	public int getDinheiroTutor(String emailTutor) {
-		return recuperaTutorPorEmail(emailTutor, "").getDinheiro();
+		if (emailTutor.trim().equals("")) {
+			throw new IllegalArgumentException("emailTutor nao pode ser vazio ou nulo");
+		}
+		
+		try {
+			return recuperaTutorPorEmail(emailTutor).getDinheiro();
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Tutor nao encontrado");
+		}
 	}
 }

@@ -133,9 +133,13 @@ public class Tutor {
 	 * @return retorna a nota do tutor apos a avaliacao
 	 */
 	public String avaliacaoTutor(int nota) {
-		if ((nota > 5) || (nota < 0)) {
-			throw new IllegalArgumentException("Erro: Nota invÃ¡lida.");
+		if (nota < 0) {
+			throw new IllegalArgumentException("nota nao pode ser menor que 0");
+		} else if (nota > 5) {
+			throw new IllegalArgumentException("nota nao pode ser menor que 0");
 		}
+		
+		
 		this.avaliacao = ((this.avaliacao * 5 + nota) / 6);
 		return (String.valueOf(this.avaliacao));
 	}
@@ -169,9 +173,9 @@ public class Tutor {
 	/**
 	 * Retorna a taxa que o tutor deve receber das doacoes feitas a ele
 	 * 
-	 * @return 0.90 (90%) + 0.01 (1%) por décimo acima de 4.5 (ex.: nota 4.7, ele
+	 * @return 0.90 (90%) + 0.01 (1%) por dï¿½cimo acima de 4.5 (ex.: nota 4.7, ele
 	 *         recebe 0.92(92%)) se sua avalicao estiver acima de 4.5. 0.80 (80%) se
-	 *         3.0 < avaliacao <= 4.5. 0.40 (40%) - 0.01 (1%) por décimo abaixo de
+	 *         3.0 < avaliacao <= 4.5. 0.40 (40%) - 0.01 (1%) por dï¿½cimo abaixo de
 	 *         3.0 (exemplo, nota 2 ele recebe 0.30 (30%)) se a avaliacao <= 3.0
 	 */
 	public double getTaxaTutor() {
