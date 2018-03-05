@@ -184,5 +184,13 @@ public class Tutor {
 		}
 
 	}
+	
+	/**
+	 * Recebe dinheiro
+	 * @param dinheiro dinheiro recebido
+	 */
+	public void recebeDinheiro(int dinheiro) {
+		this.dinheiro += dinheiro;
+	}
 
 }

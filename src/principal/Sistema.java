@@ -15,6 +15,7 @@ public class Sistema {
 	private AlunoController alunoController;
 	private TutorController tutorController;
 	private AjudaController ajudaController;
+	private Caixa caixa;
 
 	/**
 	 * Cria uma objeto Sistema
@@ -23,6 +24,7 @@ public class Sistema {
 		this.alunoController = new AlunoController();
 		this.tutorController = new TutorController();
 		this.ajudaController = new AjudaController();
+		this.caixa = new Caixa();
 	}
 
 	/**
@@ -264,4 +266,20 @@ public class Sistema {
 		return informacao;
 	}
 
+	/**
+	 * Efetua uma doacao a um tutor especifico, este fica com uma taxa do dinheiro
+	 * doado e o restante e direcionado ao caixa do sistema
+	 * 
+	 * @param matriculaTutor
+	 *            matricula do tutor que recebera a doacao
+	 * @param totalCentavos
+	 *            valor doado
+	 */
+	public void doar(String matriculaTutor, int totalCentavos) {
+		int totalSistema = (int) ((1 - tutorController.getTaxaTutor(matriculaTutor)) * totalCentavos);
+		int totalTutor = totalCentavos - totalSistema;
+
+		caixa.adicionaDinheiro(totalSistema);
+		tutorController.recebeDinheiro(matriculaTutor, totalTutor);
+	}
 }

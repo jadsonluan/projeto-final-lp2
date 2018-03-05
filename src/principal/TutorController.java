@@ -259,4 +259,28 @@ public class TutorController {
 
 		return this.tutores.get(matricula);
 	}
+
+	/**
+	 * Recupera a taxa da doaacao que e direcionada ao tutor de um tutor especifico
+	 * a partir de sua matricula
+	 * 
+	 * @param matricula
+	 *            matricula do tutor especifico
+	 * @return taxa da doacao que e direcionada ao tutor
+	 */
+	public double getTaxaTutor(String matricula) {
+		return recuperaTutorPorMatricula(matricula).getTaxaTutor();
+	}
+
+	/**
+	 * Direciona dinheiro a um tutor
+	 * 
+	 * @param matricula
+	 *            matricula do tutor que recebera o dinheiro
+	 * @param dinheiro
+	 *            dinheiro direcionado
+	 */
+	public void recebeDinheiro(String matricula, int dinheiro) {
+		recuperaTutorPorMatricula(matricula).recebeDinheiro(dinheiro);
+	}
 }
