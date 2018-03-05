@@ -39,10 +39,8 @@ public class Sistema {
 	 * @param email
 	 *            o email do aluno
 	 */
-	public void cadastrarAluno(String nome, String matricula, int codigoCurso,
-			String telefone, String email) {
-		this.alunoController.cadastrarAluno(nome, matricula, codigoCurso,
-				telefone, email);
+	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
+		this.alunoController.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
 	/**
@@ -91,11 +89,9 @@ public class Sistema {
 	 * @param proficiencia
 	 *            a proficiencia da disciplina (1-5)
 	 */
-	public void tornarTutor(String matricula, String disciplina,
-			int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		Aluno aluno = alunoController.getAluno(matricula);
-		this.tutorController.tornarTutor(matricula, aluno, disciplina,
-				proficiencia);
+		this.tutorController.tornarTutor(matricula, aluno, disciplina, proficiencia);
 	}
 
 	/**
@@ -153,8 +149,8 @@ public class Sistema {
 	 *            o horario para consulta
 	 * @param dia
 	 *            o dia para consulta
-	 * @return retorna um valor boolean, true represetando que existe e false
-	 *         que nao
+	 * @return retorna um valor boolean, true represetando que existe e false que
+	 *         nao
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		return this.tutorController.consultaHorario(email, horario, dia);
@@ -167,8 +163,8 @@ public class Sistema {
 	 *            o email do tutor
 	 * @param local
 	 *            o local para ser consultado
-	 * @return retorna um valor boolean, true represetando que existe e false
-	 *         que nao
+	 * @return retorna um valor boolean, true represetando que existe e false que
+	 *         nao
 	 */
 	public boolean consultaLocal(String email, String local) {
 		return this.tutorController.consultaLocal(email, local);
@@ -196,33 +192,76 @@ public class Sistema {
 		return this.tutorController.pegarNivel(matriculaTutor);
 	}
 
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
+		int id = -1;
 
-	public int pedirAjudaPresencial(String matrAluno, String disciplina,String horario, String dia, String localInteresse) {
-		String matrTutor = this.tutorController.getTutorAjuda(disciplina, horario, dia, localInteresse);
-		return this.ajudaController.pedirAjudaPresencial(matrAluno, matrTutor,disciplina, horario, dia, localInteresse);
+		try {
+			String matrTutor = this.tutorController.getTutorAjuda(disciplina, horario, dia, localInteresse);
+			id = this.ajudaController.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia,
+					localInteresse);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial: " + iae.getMessage());
+		}
+
+		return id;
 	}
 
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
-		String matrTutor = this.tutorController.getTutorAjuda(disciplina);
-		return this.ajudaController.pedirAjudaOnline(matrAluno, matrTutor,disciplina);
+		int id = -1;
+
+		try {
+			String matrTutor = this.tutorController.getTutorAjuda(disciplina);
+			id = this.ajudaController.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalAccessError("Erro no pedido de ajuda online: " + iae.getMessage());
+		}
+
+		return id;
 	}
 
 	public String pegarTutor(int idAjuda) {
-		String matricula = this.ajudaController.pegarTutor(idAjuda);
-		return this.tutorController.recuperaTutor(matricula);
+		String tutor = null;
+
+		try {
+			tutor = this.ajudaController.pegarTutor(idAjuda);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Erro ao tentar recuperar tutor : " + iae.getMessage());
+		}
+
+		return "Tutor - " + tutor;
 	}
+
 	/**
-	 * Avalia um tutor a partir do seu idAjuda especifico e de uma nota escolhida pelo aluno
-	 * @param idAjuda int com o id de ajuda do tutor
-	 * @param nota eh a nota que o aluno dara ao tutor
+	 * Avalia um tutor a partir do seu idAjuda especifico e de uma nota escolhida
+	 * pelo aluno
+	 * 
+	 * @param idAjuda
+	 *            int com o id de ajuda do tutor
+	 * @param nota
+	 *            eh a nota que o aluno dara ao tutor
 	 * @return String contendo a nota atual do tutor especificado
 	 */
 	public String avaliarTutor(int idAjuda, int nota) {
-		return (this.tutorController.recuperaTutorPorMatricula(this.ajudaController.pegarTutor(idAjuda)).avaliacaoTutor(nota));
+		try {
+			String matricula = this.ajudaController.getMatriculaTutor(idAjuda);
+			Tutor tutor = this.tutorController.recuperaTutorPorMatricula(matricula);
+			return tutor.avaliacaoTutor(nota);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Erro na avaliacao de tutor: " + iae.getMessage());
+		}
 	}
 
 	public String getInfoAjuda(int idAjuda, String atributo) {
-		return this.ajudaController.getInfoAjuda(idAjuda, atributo);
+		String informacao = null;
+
+		try {
+			informacao = this.ajudaController.getInfoAjuda(idAjuda, atributo);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : " + iae.getMessage());
+		}
+
+		return informacao;
 	}
 
 }
