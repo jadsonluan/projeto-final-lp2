@@ -176,7 +176,7 @@ public class Tutor {
 	 */
 	public double getTaxaTutor() {
 		if (this.avaliacao <= 3.0) {
-			return 0.4 - (3.0 - this.avaliacao) / 10;
+			return 0.4 - (30 - this.avaliacao * 10) / 100;
 		} else if (this.avaliacao < 4.5) {
 			return 0.8;
 		} else {
