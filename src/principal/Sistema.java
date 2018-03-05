@@ -276,7 +276,7 @@ public class Sistema {
 	 *            valor doado
 	 */
 	public void doar(String matriculaTutor, int totalCentavos) {
-		int totalSistema = (int) ((1 - tutorController.getTaxaTutor(matriculaTutor)) * totalCentavos);
+		int totalSistema = (int) (((10 - tutorController.getTaxaTutor(matriculaTutor) * 10) /10 ) * totalCentavos);
 		int totalTutor = totalCentavos - totalSistema;
 
 		caixa.adicionaDinheiro(totalSistema);

@@ -178,13 +178,6 @@ public class Facade {
 		return this.sistema.getInfoAjuda(idAjuda, atributo);
 	}
 
-	public static void main(String[] args) {
-		args = new String[] { "principal.Facade", "acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
-				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt", "acceptance_test/us5_test.txt",
-				"acceptance_test/us6_test.txt" };
-		EasyAccept.main(args);
-	}
-
 	public String avaliarTutor(int idAjuda, int nota) {
 		return this.sistema.avaliarTutor(idAjuda, nota);
 	}
@@ -225,6 +218,13 @@ public class Facade {
 	 */
 	public int totalDinheiroTutor(String emailTutor) {
 		return sistema.totalDinheiroTutor(emailTutor);
+	}
+	
+	public static void main(String[] args) {
+		args = new String[] { "principal.Facade", "acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
+				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt", "acceptance_test/us5_test.txt",
+				"acceptance_test/us6_test.txt" };
+		EasyAccept.main(args);
 	}
 
 }

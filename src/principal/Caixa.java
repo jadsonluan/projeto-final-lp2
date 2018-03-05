@@ -18,6 +18,9 @@ public class Caixa {
 	 *            dinheiro a ser adicionado ao caixa
 	 */
 	public void adicionaDinheiro(int dinheiro) {
+		if(dinheiro < 0) {
+			throw new IllegalArgumentException("Erro ao adicionar dinheiro ao caixa: dinheiro nao pode ser negativo");
+		}
 		this.dinheiro += dinheiro;
 	}
 

@@ -176,11 +176,13 @@ public class Tutor {
 	 */
 	public double getTaxaTutor() {
 		if (this.avaliacao <= 3.0) {
-			return 0.4 - (3.0 - this.avaliacao);
-		} else if (this.avaliacao <= 4.5) {
+			return 0.4 - (3.0 - this.avaliacao) / 10;
+		} else if (this.avaliacao < 4.5) {
 			return 0.8;
 		} else {
-			return 0.9 + (5.0 - this.avaliacao);
+			double bonus = ((0.5 + this.avaliacao) - 5.0) / 10;
+			bonus = (int) (bonus / 0.01) * 0.01;
+			return 0.9 + bonus;
 		}
 
 	}
