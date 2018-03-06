@@ -1,5 +1,7 @@
 package principal;
 
+import java.text.DecimalFormat;
+
 /**
  * Controla as informaÃ§Ãµes de aluno
  * 
@@ -185,8 +187,9 @@ public class Sistema {
 	 *            matricula do tutor que deseja-se consultar
 	 * @return double nota do tutor especificado
 	 */
-	public double pegarNota(String matriculaTutor) {
-		return this.tutorController.pegarNota(matriculaTutor);
+	public String pegarNota(String matriculaTutor) {
+		DecimalFormat formatacao = new DecimalFormat("0.00");
+		return formatacao.format(this.tutorController.pegarNota(matriculaTutor));
 	}
 
 	/**

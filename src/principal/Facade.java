@@ -182,7 +182,7 @@ public class Facade {
 		return this.sistema.avaliarTutor(idAjuda, nota);
 	}
 
-	public double pegarNota(String matriculaTutor) {
+	public String pegarNota(String matriculaTutor) {
 		return this.sistema.pegarNota(matriculaTutor);
 
 	}
