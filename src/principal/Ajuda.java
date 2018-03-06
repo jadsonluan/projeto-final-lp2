@@ -21,21 +21,21 @@ public abstract class Ajuda {
 			throw new IllegalArgumentException("id nao pode menor que zero ");
 		}
 
-		if (matrAluno.trim().equals("")) {
+		if (matrAluno == null || matrAluno.trim().equals("")) {
 			throw new IllegalArgumentException("matricula de aluno nao pode ser vazio ou em branco");
 		}
 
-		if (matrTutor.trim().equals("")) {
+		if (matrTutor == null || matrTutor.trim().equals("")) {
 			throw new IllegalArgumentException("matricula de tutor nao pode ser vazio ou em branco");
 		}
 
-		if (disciplina.trim().equals("")) {
+		if (disciplina == null || disciplina.trim().equals("")) {
 			throw new IllegalArgumentException("disciplina nao pode ser vazio ou em branco");
 		}
 	}
 
 	public String getInfo(String atributo) {
-		if (atributo.trim().equals("")) {
+		if (atributo == null || atributo.trim().equals("")) {
 			throw new IllegalArgumentException("atributo nao pode ser vazio ou em branco");
 		}
 

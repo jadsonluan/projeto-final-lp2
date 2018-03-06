@@ -8,9 +8,24 @@ public class AjudaPresencial extends Ajuda {
 	public AjudaPresencial(int id, String matrAluno, String matrTutor, String disciplina, String horario, String dia,
 			String localInteresse) {
 		super(id, matrAluno, matrTutor, disciplina);
+		verificacoes(horario, dia, localInteresse);
 		this.local = localInteresse;
 		this.dia = dia;
 		this.hora = horario;
+	}
+
+	private void verificacoes(String horario, String dia, String local) {
+		if (horario == null || horario.trim().equals("")) {
+			throw new IllegalArgumentException("horario nao pode ser vazio ou em branco");
+		}
+		
+		if (dia == null || dia.trim().equals("")) {
+			throw new IllegalArgumentException("dia nao pode ser vazio ou em branco");
+		}
+		
+		if (local == null || local.trim().equals("")) {
+			throw new IllegalArgumentException("local de atendimento nao pode ser vazio ou em branco");
+		}
 	}
 
 	@Override
