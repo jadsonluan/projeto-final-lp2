@@ -137,7 +137,7 @@ public class Tutor {
 	 *            inteiro da nota que sera utilizada para avaliar o tutor
 	 * @return retorna a nota do tutor apos a avaliacao
 	 */
-	public String avaliacaoTutor(int nota) {
+	public double avaliacaoTutor(int nota) {
 		if (nota < 0) {
 			throw new IllegalArgumentException("nota nao pode ser menor que 0");
 		} else if (nota > 5) {
@@ -146,7 +146,7 @@ public class Tutor {
 		
 		
 		this.avaliacao = ((this.avaliacao * 5 + nota) / 6);
-		return (String.valueOf(this.avaliacao));
+		return this.avaliacao;
 	}
 
 	/**

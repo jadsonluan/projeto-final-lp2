@@ -254,17 +254,19 @@ public class Sistema {
 	 * @return String contendo a nota atual do tutor especificado
 	 */
 	public String avaliarTutor(int idAjuda, int nota) {
+		
 		try {
 			if (nota < 0) {
 				throw new IllegalArgumentException("nota nao pode ser menor que 0");
 			} else if (nota > 5) {
 				throw new IllegalArgumentException("nota nao pode ser maior que 5");
 			}
-
+			DecimalFormat formatador = new DecimalFormat("0.00");
+			
 			String matricula = this.ajudaController.getMatriculaTutor(idAjuda);
 			Tutor tutor = this.tutorController.recuperaTutorPorMatricula(matricula);
 			this.ajudaController.avalia(idAjuda);
-			String retorno = tutor.avaliacaoTutor(nota);
+			String retorno = formatador.format(tutor.avaliacaoTutor(nota));
 			return retorno;
 		} catch (IllegalArgumentException iae) {
 			throw new IllegalArgumentException("Erro na avaliacao de tutor: " + iae.getMessage());
