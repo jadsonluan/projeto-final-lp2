@@ -30,37 +30,37 @@ public class AlunoTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstrutorComTelefoneEmailSemArroba() {
-		new Aluno("1", "Jones", "jones.ccc.ufcg.edu.br", 2, "0000-0000");
+		new Aluno("1", "Jones", "jones@ccc.ufcg.edu.br", 2, "0000-0000");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstrutorComTelefoneMatriculaNula() {
-		new Aluno(null, "Jones", "jones.ccc.ufcg.edu.br", 2, "0000-0000");
+		new Aluno(null, "Jones", "jones@ccc.ufcg.edu.br", 2, "0000-0000");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstrutorComTelefoneMatriculaVazia() {
-		new Aluno("", "Jones", "jones.ccc.ufcg.edu.br", 2, "0000-0000");
+		new Aluno("", "Jones", "jones@ccc.ufcg.edu.br", 2, "0000-0000");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstrutorComTelefoneNomeNulo() {
-		new Aluno("1", null, "jones.ccc.ufcg.edu.br", 2, "0000-0000");
+		new Aluno("1", null, "jones@ccc.ufcg.edu.br", 2, "0000-0000");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstrutorComTelefoneNomeVazio() {
-		new Aluno("1", "", "jones.ccc.ufcg.edu.br", 2, "0000-0000");
+		new Aluno("1", "", "jones@ccc.ufcg.edu.br", 2, "0000-0000");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstrutorComTelefoneTelefoneVazio() {
-		new Aluno("1", "Jones", "jones.ccc.ufcg.edu.br", 2, "");
+		new Aluno("1", "Jones", "jones@ccc.ufcg.edu.br", 2, "");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstrutorComTelefoneCodigoCursoNegativo() {
-		new Aluno("1", "Jones", "jones.ccc.ufcg.edu.br", -1, "0000-0000");
+		new Aluno("1", "Jones", "jones@ccc.ufcg.edu.br", -1, "0000-0000");
 	}
 
 	@Test
