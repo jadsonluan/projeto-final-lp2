@@ -59,6 +59,7 @@ public class Tutor {
 	 *            é o dia que deseja-se cadastrar a hora
 	 */
 	public void cadastrarHorario(String hora, String dia) {
+		verificaDados(hora, dia, "LCC2");
 		ArrayList<String> horarios = this.horarios.get(dia);
 
 		if (horarios == null) {
@@ -78,8 +79,8 @@ public class Tutor {
 	 *            é o local de atendimento a ser cadastrado.
 	 */
 	public void cadastrarLocalDeAtendimento(String local) {
+		verificaDados("12:00", "seg", local);
 		this.locais.add(local);
-
 	}
 
 	/**
@@ -104,6 +105,7 @@ public class Tutor {
 	}
 
 	/**
+		if
 	 * Consulta se o tutor estará em um local específico
 	 * 
 	 * @param local
@@ -207,6 +209,20 @@ public class Tutor {
 	
 	public int getDinheiro() {
 		return dinheiro;
+	}
+	
+	private void verificaDados(String hora, String dia, String local) {
+		if (hora == null || hora.trim().equals("")) {
+			throw new IllegalArgumentException("Hora nao pode ser vazia ou nula");
+		}
+
+		if (dia == null || dia.trim().equals("")) {
+			throw new IllegalArgumentException("dia nao pode ser vazio ou nulo");
+		}
+
+		if (local == null || local.trim().equals("")) {
+			throw new IllegalArgumentException("local nao pode ser vazio ou nulo");
+		}
 	}
 
 }
