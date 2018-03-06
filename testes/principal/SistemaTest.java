@@ -286,4 +286,22 @@ public class SistemaTest {
 	public void testPegarTutorAjudaInexistente() {
 		sistema.pegarTutor(1);
 	}
+	
+//	@Test
+	public void testAvaliarTutor() {
+		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
+		assertEquals("4,16", sistema.avaliarTutor(id, 5));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorNotaMenorQueZero() {
+		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
+		sistema.avaliarTutor(id, -1);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorNotaMaiorQueCinco() {
+		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
+		sistema.avaliarTutor(id, 6);
+	}
 }
