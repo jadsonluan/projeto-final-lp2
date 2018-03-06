@@ -287,10 +287,10 @@ public class SistemaTest {
 		sistema.pegarTutor(1);
 	}
 	
-//	@Test
+	@Test
 	public void testAvaliarTutor() {
 		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
-		assertEquals("4,16", sistema.avaliarTutor(id, 5));
+		assertEquals("4,17", sistema.avaliarTutor(id, 5));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -303,5 +303,88 @@ public class SistemaTest {
 	public void testAvaliarTutorNotaMaiorQueCinco() {
 		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
 		sistema.avaliarTutor(id, 6);
+	}
+	
+	@Test
+	public void testGetInfoAjudaOnline() {
+		int id = sistema.pedirAjudaOnline("1111", "Programação 2");
+		assertEquals("1111", sistema.getInfoAjuda(id, "matrAluno"));
+		assertEquals("1001", sistema.getInfoAjuda(id, "matrTutor"));
+		assertEquals("Programação 2", sistema.getInfoAjuda(id, "disciplina"));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaOnlineIdInvalido() {
+		sistema.getInfoAjuda(1, "matrAluno");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaOnlineAtributoNulo() {
+		int id = sistema.pedirAjudaOnline("1111", "Programação 2");
+		sistema.getInfoAjuda(id, null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaOnlineAtributoVazio() {
+		int id = sistema.pedirAjudaOnline("1111", "Programação 2");
+		sistema.getInfoAjuda(id, "   ");
+	}
+	
+	@Test
+	public void testGetInfoAjudaPresencial() {
+		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
+		assertEquals("1111", sistema.getInfoAjuda(id, "matrAluno"));
+		assertEquals("1001", sistema.getInfoAjuda(id, "matrTutor"));
+		assertEquals("Programação 2", sistema.getInfoAjuda(id, "disciplina"));
+		assertEquals("15:00", sistema.getInfoAjuda(id, "horario"));
+		assertEquals("sex", sistema.getInfoAjuda(id, "dia"));
+		assertEquals("LCC2", sistema.getInfoAjuda(id, "localInteresse"));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaPresencialAtributoInvalido() {
+		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
+		sistema.getInfoAjuda(id, "roupas");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaPresencialAtributoVazio() {
+		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
+		sistema.getInfoAjuda(id, "       ");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaPresencialAtributoNulo() {
+		int id = sistema.pedirAjudaPresencial("1111", "Programação 2", "15:00", "sex", "LCC2");
+		sistema.getInfoAjuda(id, null);
+	}
+	
+	@Test
+	public void testDoar() {
+		sistema.doar("1001", 1000);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarTutorInexistente() {
+		sistema.doar("100", 1000);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarQuantiaInvalida() {
+		sistema.doar("1001", -1000);
+	}
+	
+	@Test
+	public void testTotalDinheiroSistema() {
+		assertEquals(0, sistema.totalDinheiroSistema());
+		sistema.doar("1001", 1000);
+		assertEquals(200, sistema.totalDinheiroSistema());
+	}
+	
+	@Test
+	public void testTotalDinheiroTutor() {
+		assertEquals(0, sistema.totalDinheiroTutor("matheus.g@ccc.ufcg.edu.br"));
+		sistema.doar("1001", 1000);
+		assertEquals(800, sistema.totalDinheiroTutor("matheus.g@ccc.ufcg.edu.br"));
 	}
 }
