@@ -27,6 +27,21 @@ public class Aluno implements Comparable<Aluno> {
 	 *            telefone do aluno
 	 */
 	public Aluno(String matricula, String nome, String email, int codigoCurso, String telefone) {
+		try {
+			verificaEmailCadastroAluno(email);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException("Erro no cadastro de aluno: " + iae.getMessage());
+		}
+		if (matricula == null || matricula.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
+		}		
+		if (nome == null || nome.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
+		}
+		if(telefone != null && telefone.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Telefone nao pode ser vazio");
+		}
+		
 		this.matricula = matricula;
 		this.nome = nome;
 		this.email = email;
@@ -119,5 +134,26 @@ public class Aluno implements Comparable<Aluno> {
 
 	public String getMatricula() {
 		return matricula;
+	}
+	
+	private void verificaEmailCadastroAluno(String email) {
+		String inicioEmail = String.valueOf(email.charAt(0));
+		String fimEmail = String.valueOf(email.charAt(email.length() - 1));
+		
+		if (inicioEmail.equals("@") || fimEmail.equals("@")) {
+			throw new IllegalArgumentException("Email invalido");
+		}
+
+		boolean temArroba = false;
+		
+		for (int i = 0; i < email.length(); i++) {
+			if (String.valueOf(email.charAt(i)).equals("@")) {
+				temArroba = true;
+			}
+		}
+
+		if (!temArroba) {
+			throw new IllegalArgumentException("Email invalido");
+		}
 	}
 }
