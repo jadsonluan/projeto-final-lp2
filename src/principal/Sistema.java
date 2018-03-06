@@ -225,7 +225,7 @@ public class Sistema {
 			String matrTutor = this.tutorController.getTutorAjuda(disciplina);
 			id = this.ajudaController.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalAccessError("Erro no pedido de ajuda online: " + iae.getMessage());
+			throw new IllegalArgumentException("Erro no pedido de ajuda online: " + iae.getMessage());
 		}
 
 		return id;
