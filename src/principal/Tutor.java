@@ -19,6 +19,9 @@ public class Tutor {
 	 * Construtor de uma tutoria
 	 */
 	public Tutor(Aluno aluno) {
+		if(aluno == null) {
+			throw new IllegalArgumentException("Erro ao cadastrar tutor: Aluno nao pode ser nulo");
+		}
 		this.aluno = aluno;
 		this.disciplinas = new HashMap<String, Integer>();
 		this.avaliacao = 4;
@@ -180,7 +183,10 @@ public class Tutor {
 	 */
 	public double getTaxaTutor() {
 		if (this.avaliacao <= 3.0) {
-			return 0.4 - (30 - this.avaliacao * 10) / 100;
+			double decrescimo = (3.0 - this.avaliacao) / 10;
+			decrescimo = (int) (decrescimo / 0.01) * 0.01;
+			return 0.4 - decrescimo;
+			//return 0.4 - (30 - this.avaliacao * 10) / 100;
 		} else if (this.avaliacao < 4.5) {
 			return 0.8;
 		} else {

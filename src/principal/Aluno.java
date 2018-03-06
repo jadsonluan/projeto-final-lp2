@@ -41,6 +41,9 @@ public class Aluno implements Comparable<Aluno> {
 		if(telefone != null && telefone.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no cadastro de aluno: Telefone nao pode ser vazio");
 		}
+		if(codigoCurso < 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Codigo do curso nao pode ser negativo");
+		}
 		
 		this.matricula = matricula;
 		this.nome = nome;

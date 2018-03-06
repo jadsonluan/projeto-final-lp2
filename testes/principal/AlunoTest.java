@@ -57,6 +57,11 @@ public class AlunoTest {
 	public void testConstrutorComTelefoneTelefoneVazio() {
 		new Aluno("1", "Jones", "jones.ccc.ufcg.edu.br", 2, "");
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testConstrutorComTelefoneCodigoCursoNegativo() {
+		new Aluno("1", "Jones", "jones.ccc.ufcg.edu.br", -1, "0000-0000");
+	}
 
 	@Test
 	public void testToStringAlunoSemTelefone() {
