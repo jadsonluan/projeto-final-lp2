@@ -20,7 +20,7 @@ public class Tutor {
 	 */
 	public Tutor(Aluno aluno) {
 		if(aluno == null) {
-			throw new IllegalArgumentException("Erro ao cadastrar tutor: Aluno nao pode ser nulo");
+			throw new IllegalArgumentException("Aluno nao pode ser nulo");
 		}
 		this.aluno = aluno;
 		this.disciplinas = new HashMap<String, Integer>();

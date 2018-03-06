@@ -30,19 +30,19 @@ public class Aluno implements Comparable<Aluno> {
 		try {
 			verificaEmailCadastroAluno(email);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException("Erro no cadastro de aluno: " + iae.getMessage());
+			throw new IllegalArgumentException(iae.getMessage());
 		}
 		if (matricula == null || matricula.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
+			throw new IllegalArgumentException("Matricula nao pode ser vazia ou nula");
 		}		
 		if (nome == null || nome.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("Nome nao pode ser vazio ou nulo");
 		}
 		if(telefone != null && telefone.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastro de aluno: Telefone nao pode ser vazio");
+			throw new IllegalArgumentException("Telefone nao pode ser vazio");
 		}
 		if(codigoCurso < 0) {
-			throw new IllegalArgumentException("Erro no cadastro de aluno: Codigo do curso nao pode ser negativo");
+			throw new IllegalArgumentException("Codigo do curso nao pode ser negativo");
 		}
 		
 		this.matricula = matricula;
