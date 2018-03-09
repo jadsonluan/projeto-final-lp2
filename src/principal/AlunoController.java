@@ -158,4 +158,8 @@ public class AlunoController {
 		return null;
 	}
 
+	public Map getMapAlunos() {
+		return this.alunos;
+	}
+
 }

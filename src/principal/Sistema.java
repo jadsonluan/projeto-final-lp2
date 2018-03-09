@@ -1,6 +1,7 @@
 package principal;
 
 import java.text.DecimalFormat;
+import java.util.Map;
 
 /**
  * Controla as informaÃ§Ãµes de aluno
@@ -11,6 +12,7 @@ public class Sistema {
 	private AlunoController alunoController;
 	private TutorController tutorController;
 	private AjudaController ajudaController;
+	private Persistencia persistencia;
 	private Caixa caixa;
 
 	/**
@@ -20,6 +22,7 @@ public class Sistema {
 		this.alunoController = new AlunoController();
 		this.tutorController = new TutorController();
 		this.ajudaController = new AjudaController();
+		this.persistencia = new Persistencia();
 		this.caixa = new Caixa();
 	}
 
@@ -332,5 +335,14 @@ public class Sistema {
 		} catch (IllegalArgumentException iae) {
 			throw new IllegalArgumentException("Erro na consulta de total de dinheiro do tutor: " + iae.getMessage());
 		}
+	}
+
+	public void salvar() {
+		Map mapAlunos = this.alunoController.getMapAlunos();
+		Map mapTutores = this.tutorController.getMapTutor();
+		Map mapAjudas = this.ajudaController.getMapAjudas();
+		this.persistencia.salvar(mapAlunos, "mapAlunos");
+		this.persistencia.salvar(mapTutores, "mapTutores");
+		this.persistencia.salvar(mapAjudas, "mapAjudas");
 	}
 }

@@ -27,8 +27,10 @@ public class Facade {
 	 * @param email
 	 *            o email do aluno
 	 */
-	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		this.sistema.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+	public void cadastrarAluno(String nome, String matricula, int codigoCurso,
+			String telefone, String email) {
+		this.sistema.cadastrarAluno(nome, matricula, codigoCurso, telefone,
+				email);
 	}
 
 	/**
@@ -77,7 +79,8 @@ public class Facade {
 	 * @param proficiencia
 	 *            a proficiencia da disciplina (1-5)
 	 */
-	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina,
+			int proficiencia) {
 		this.sistema.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
@@ -136,8 +139,8 @@ public class Facade {
 	 *            o horario para consulta
 	 * @param dia
 	 *            o dia para consulta
-	 * @return retorna um valor boolean, true represetando que existe e false que
-	 *         nao
+	 * @return retorna um valor boolean, true represetando que existe e false
+	 *         que nao
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		return this.sistema.consultaHorario(email, horario, dia);
@@ -150,8 +153,8 @@ public class Facade {
 	 *            o email do tutor
 	 * @param local
 	 *            o local para ser consultado
-	 * @return retorna um valor boolean, true represetando que existe e false que
-	 *         nao
+	 * @return retorna um valor boolean, true represetando que existe e false
+	 *         que nao
 	 */
 	public boolean consultaLocal(String email, String local) {
 		return this.sistema.consultaLocal(email, local);
@@ -161,9 +164,10 @@ public class Facade {
 		return this.sistema.pegarNivel(matriculaTutor);
 	}
 
-	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
-			String localInteresse) {
-		return this.sistema.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	public int pedirAjudaPresencial(String matrAluno, String disciplina,
+			String horario, String dia, String localInteresse) {
+		return this.sistema.pedirAjudaPresencial(matrAluno, disciplina,
+				horario, dia, localInteresse);
 	}
 
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
@@ -186,10 +190,10 @@ public class Facade {
 		return this.sistema.pegarNota(matriculaTutor);
 
 	}
-	
+
 	/**
-	 * Efetua uma doacao a um tutor especifico, este fica com uma taxa do dinheiro
-	 * doado e o restante e direcionado ao caixa do sistema
+	 * Efetua uma doacao a um tutor especifico, este fica com uma taxa do
+	 * dinheiro doado e o restante e direcionado ao caixa do sistema
 	 * 
 	 * @param matriculaTutor
 	 *            matricula do tutor que recebera a doacao
@@ -219,11 +223,16 @@ public class Facade {
 	public int totalDinheiroTutor(String emailTutor) {
 		return sistema.totalDinheiroTutor(emailTutor);
 	}
-	
+
+	public void salvar() {
+		this.sistema.salvar();
+	}
+
 	public static void main(String[] args) {
-		args = new String[] { "principal.Facade", "acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
-				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt", "acceptance_test/us5_test.txt",
-				"acceptance_test/us6_test.txt" };
+		args = new String[] { "principal.Facade",
+				"acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
+				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt",
+				"acceptance_test/us5_test.txt", "acceptance_test/us6_test.txt" };
 		EasyAccept.main(args);
 	}
 

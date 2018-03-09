@@ -289,4 +289,8 @@ public class TutorController {
 			throw new IllegalArgumentException("Tutor nao encontrado");
 		}
 	}
+
+	public Map getMapTutor() {
+		return this.tutores;
+	}
 }

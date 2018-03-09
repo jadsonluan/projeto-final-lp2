@@ -66,4 +66,8 @@ public class AjudaController {
 			throw new IllegalArgumentException("id nao encontrado ");
 		}
 	}
+
+	public Map getMapAjudas() {
+		return this.listaAjuda;
+	}
 }
