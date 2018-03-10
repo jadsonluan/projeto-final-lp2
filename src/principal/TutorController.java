@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class TutorController {
 
 	private Map<String, Tutor> tutores;
+	private Comparator<Tutor> criterioOrd;
 
 	/**
 	 * Cria uma objeto Sistema
@@ -50,8 +52,13 @@ public class TutorController {
 	 */
 	public String listarTutores() {
 		List<String> listaTutores = new ArrayList<>();
+		List<Tutor> tutoresOrdenados = new ArrayList<>(this.tutores.values());
 
-		for (Tutor tutor : this.tutores.values()) {
+		if (criterioOrd != null) {
+			Collections.sort(tutoresOrdenados, criterioOrd);
+		}
+
+		for (Tutor tutor : tutoresOrdenados) {
 			listaTutores.add(tutor.getAluno().toString());
 		}
 
@@ -270,7 +277,7 @@ public class TutorController {
 		if (dinheiro < 0) {
 			throw new IllegalArgumentException("");
 		}
-		
+
 		try {
 			recuperaTutorPorMatricula(matricula).recebeDinheiro(dinheiro);
 		} catch (IllegalArgumentException iae) {
@@ -282,7 +289,7 @@ public class TutorController {
 		if (emailTutor.trim().equals("")) {
 			throw new IllegalArgumentException("emailTutor nao pode ser vazio ou nulo");
 		}
-		
+
 		try {
 			return recuperaTutorPorEmail(emailTutor).getDinheiro();
 		} catch (IllegalArgumentException iae) {
@@ -292,5 +299,33 @@ public class TutorController {
 
 	public Map getMapTutor() {
 		return this.tutores;
+	}
+
+	/**
+	 * Configura a ordem de listagem de tutores baseado seus atributos.
+	 * 
+	 * @param atributo
+	 */
+	public void configuraOrdem(String atributo) {
+		if (atributo == null || atributo.trim().equals("")) {
+			throw new IllegalArgumentException("atributo nao pode ser vazio ou nulo");
+		}
+
+		switch (atributo.toLowerCase()) {
+		case "nome":
+			criterioOrd = new ComparaNome();
+			break;
+
+		case "matricula":
+			criterioOrd = new ComparaMatricula();
+			break;
+
+		case "email":
+			criterioOrd = new ComparaEmail();
+			break;
+
+		default:
+			throw new IllegalArgumentException("atributo invalido");
+		}
 	}
 }

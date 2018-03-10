@@ -227,6 +227,13 @@ public class Facade {
 	public void salvar() {
 		this.sistema.salvar();
 	}
+	
+	/**
+	 * @see Sistema#configurarOrdem(String) 
+	 */
+	public void configuraOrdem(String atributo) {
+		this.sistema.configurarOrdem(atributo);
+	}
 
 	public static void main(String[] args) {
 		args = new String[] { "principal.Facade",

@@ -387,4 +387,74 @@ public class SistemaTest {
 		sistema.doar("1001", 1000);
 		assertEquals(800, sistema.totalDinheiroTutor("matheus.g@ccc.ufcg.edu.br"));
 	}
+	
+	@Test
+	public void testConfiguraOrdem() {
+		sistema.cadastrarAluno("Robert", "1002", 10000, "0200-1000", "robert@ccc.ufcg.edu.br");
+		sistema.tornarTutor("1002", "Programação 2", 5);
+		
+		sistema.cadastrarAluno("Matheus", "1003", 10000, "0200-1000", "matheus.gomes@ccc.ufcg.edu.br");
+		sistema.tornarTutor("1003", "Programação 1", 5);
+		
+		sistema.cadastrarAluno("Marcelo Robert", "1004", 10000, "0200-1000", "robert@ccc.ufcg.edu.br");
+		sistema.tornarTutor("1004", "Introdução a Computação", 5);
+		
+		// ORDENAÇÃO PADRÃO
+		String tutores = "";
+		tutores += sistema.recuperaTutor("1004") + ", ";
+		tutores += sistema.recuperaTutor("1003") + ", ";
+		tutores += sistema.recuperaTutor("1002") + ", ";
+		tutores += sistema.recuperaTutor("1001");
+		
+		assertEquals(tutores, sistema.listarTutores());
+		
+		// ORDENAÇÃO POR MATRICULA
+		sistema.configurarOrdem("MATRICULA");
+		
+		tutores = "";
+		tutores += sistema.recuperaTutor("1001") + ", ";
+		tutores += sistema.recuperaTutor("1002") + ", ";
+		tutores += sistema.recuperaTutor("1003") + ", ";
+		tutores += sistema.recuperaTutor("1004");
+		
+		assertEquals(tutores, sistema.listarTutores());
+		
+		// ORDENAÇÃO POR NOME
+		sistema.configurarOrdem("NOME");
+		
+		tutores = "";
+		tutores += sistema.recuperaTutor("1004") + ", ";
+		tutores += sistema.recuperaTutor("1001") + ", ";
+		tutores += sistema.recuperaTutor("1003") + ", ";
+		tutores += sistema.recuperaTutor("1002");
+		
+		assertEquals(tutores, sistema.listarTutores());
+		
+		// ORDENAÇÃO POR EMAIL
+		sistema.configurarOrdem("EMAIL");
+		
+		tutores = "";
+		tutores += sistema.recuperaTutor("1001") + ", ";
+		tutores += sistema.recuperaTutor("1003") + ", ";
+		tutores += sistema.recuperaTutor("1002") + ", ";
+		tutores += sistema.recuperaTutor("1004");
+		
+		assertEquals(tutores, sistema.listarTutores());
+		
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfiguraOrdemAtributoNulo() {
+		sistema.configurarOrdem(null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfiguraOrdemAtributoVazio() {
+		sistema.configurarOrdem("      ");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfiguraOrdemAtributoInvalido() {
+		sistema.configurarOrdem("beleza");
+	}
 }

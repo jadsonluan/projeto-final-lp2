@@ -345,4 +345,11 @@ public class Sistema {
 		this.persistencia.salvar(mapTutores, "mapTutores");
 		this.persistencia.salvar(mapAjudas, "mapAjudas");
 	}
+	
+	/**
+	 * @see TutorController#configuraOrdem(String) 
+	 */
+	public void configurarOrdem(String atributo) {
+		this.tutorController.configuraOrdem(atributo);
+	}
 }
