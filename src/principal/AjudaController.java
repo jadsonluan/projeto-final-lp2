@@ -34,11 +34,10 @@ public class AjudaController {
 	 * @param localInteresse
 	 *            o lacal que deseja
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String matrTutor,
-			String disciplina, String horario, String dia, String localInteresse) {
+	public int pedirAjudaPresencial(String matrAluno, String matrTutor, String disciplina, String horario, String dia,
+			String localInteresse) {
 		int id = this.listaAjuda.values().size() + 1;
-		Ajuda ajuda = new AjudaPresencial(id, matrAluno, matrTutor, disciplina,
-				horario, dia, localInteresse);
+		Ajuda ajuda = new AjudaPresencial(id, matrAluno, matrTutor, disciplina, horario, dia, localInteresse);
 		this.listaAjuda.put(id, ajuda);
 		return id;
 	}
@@ -53,8 +52,7 @@ public class AjudaController {
 	 * @param disciplina
 	 *            a disciplina que precisa de ajuda
 	 */
-	public int pedirAjudaOnline(String matrAluno, String matrTutor,
-			String disciplina) {
+	public int pedirAjudaOnline(String matrAluno, String matrTutor, String disciplina) {
 		int id = this.listaAjuda.values().size() + 1;
 		Ajuda ajuda = new AjudaOnline(id, matrAluno, matrTutor, disciplina);
 		this.listaAjuda.put(id, ajuda);
@@ -137,5 +135,15 @@ public class AjudaController {
 	 */
 	public void salvar() {
 		Persistencia.salvar(this.listaAjuda, "ajudaMap");
+	}
+
+	/**
+	 * Carrega as informacoes armazenadas de ajudas
+	 */
+	public void carregar() {
+		HashMap<Integer, Ajuda> aux = (HashMap<Integer, Ajuda>) Persistencia.carregar("ajudaMap");
+		if (aux != null) {
+			this.listaAjuda = aux;
+		}
 	}
 }

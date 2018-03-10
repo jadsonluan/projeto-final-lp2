@@ -6,8 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Map;
-
 /**
  * 
  * @author Arthur de Lima Ferrao
@@ -49,7 +47,7 @@ public class Persistencia {
 		ObjectInputStream oos = null;
 
 		try {
-			ops = new FileInputStream(new File(nomeArquivo));
+			ops = new FileInputStream(new File("arquivo" + File.separator + nomeArquivo + ".txt"));
 			oos = new ObjectInputStream(ops);
 			return oos.readObject();
 		} catch (IOException | ClassNotFoundException e) {

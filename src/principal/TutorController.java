@@ -11,6 +11,7 @@ public class TutorController {
 
 	private Map<String, Tutor> tutores;
 	private Comparator<Tutor> criterioOrd;
+
 	/**
 	 * Cria uma objeto Sistema
 	 */
@@ -296,7 +297,6 @@ public class TutorController {
 		}
 	}
 
-
 	/**
 	 * Configura a ordem de listagem de tutores baseado seus atributos.
 	 * 
@@ -327,5 +327,15 @@ public class TutorController {
 
 	public void salvar() {
 		Persistencia.salvar(tutores, "tutorMap");
+	}
+
+	/**
+	 * Carrega as informacoes armazenadas de tutores
+	 */
+	public void carregar() {
+		HashMap<String, Tutor> aux = (HashMap<String, Tutor>) Persistencia.carregar("tutorMap");
+		if (aux != null) {
+			this.tutores = aux;
+		}
 	}
 }

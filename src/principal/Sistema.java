@@ -1,7 +1,6 @@
 package principal;
 
 import java.text.DecimalFormat;
-import java.util.Map;
 
 /**
  * Controla as informaÃ§Ãµes de aluno
@@ -38,10 +37,8 @@ public class Sistema {
 	 * @param email
 	 *            o email do aluno
 	 */
-	public void cadastrarAluno(String nome, String matricula, int codigoCurso,
-			String telefone, String email) {
-		this.alunoController.cadastrarAluno(nome, matricula, codigoCurso,
-				telefone, email);
+	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
+		this.alunoController.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
 	/**
@@ -90,11 +87,9 @@ public class Sistema {
 	 * @param proficiencia
 	 *            a proficiencia da disciplina (1-5)
 	 */
-	public void tornarTutor(String matricula, String disciplina,
-			int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		Aluno aluno = alunoController.getAluno(matricula);
-		this.tutorController.tornarTutor(matricula, aluno, disciplina,
-				proficiencia);
+		this.tutorController.tornarTutor(matricula, aluno, disciplina, proficiencia);
 	}
 
 	/**
@@ -131,8 +126,7 @@ public class Sistema {
 		try {
 			this.tutorController.cadastrarHorario(email, horario, dia);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: "
-					+ iae.getMessage());
+			throw new IllegalArgumentException("Erro no cadastrar horario: " + iae.getMessage());
 		}
 	}
 
@@ -148,9 +142,7 @@ public class Sistema {
 		try {
 			this.tutorController.cadastrarLocalDeAtendimento(email, local);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(
-					"Erro no cadastrar local de atendimento: "
-							+ iae.getMessage());
+			throw new IllegalArgumentException("Erro no cadastrar local de atendimento: " + iae.getMessage());
 		}
 	}
 
@@ -163,16 +155,14 @@ public class Sistema {
 	 *            o horario para consulta
 	 * @param dia
 	 *            o dia para consulta
-	 * @return retorna um valor boolean, true represetando que existe e false
-	 *         que nao
+	 * @return retorna um valor boolean, true represetando que existe e false que
+	 *         nao
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		try {
 			return this.tutorController.consultaHorario(email, horario, dia);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(
-					"Erro no cadastrar horario de atendimento: "
-							+ iae.getMessage());
+			throw new IllegalArgumentException("Erro no cadastrar horario de atendimento: " + iae.getMessage());
 		}
 	}
 
@@ -183,8 +173,8 @@ public class Sistema {
 	 *            o email do tutor
 	 * @param local
 	 *            o local para ser consultado
-	 * @return retorna um valor boolean, true represetando que existe e false
-	 *         que nao
+	 * @return retorna um valor boolean, true represetando que existe e false que
+	 *         nao
 	 */
 	public boolean consultaLocal(String email, String local) {
 		return this.tutorController.consultaLocal(email, local);
@@ -199,8 +189,7 @@ public class Sistema {
 	 */
 	public String pegarNota(String matriculaTutor) {
 		DecimalFormat formatacao = new DecimalFormat("0.00");
-		return formatacao
-				.format(this.tutorController.pegarNota(matriculaTutor));
+		return formatacao.format(this.tutorController.pegarNota(matriculaTutor));
 	}
 
 	/**
@@ -231,18 +220,16 @@ public class Sistema {
 	 *            o lacal que deseja
 	 * @return o id do pedido de ajuda
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String disciplina,
-			String horario, String dia, String localInteresse) {
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
 		int id = -1;
 
 		try {
-			String matrTutor = this.tutorController.getTutorAjuda(disciplina,
-					horario, dia, localInteresse);
-			id = this.ajudaController.pedirAjudaPresencial(matrAluno,
-					matrTutor, disciplina, horario, dia, localInteresse);
+			String matrTutor = this.tutorController.getTutorAjuda(disciplina, horario, dia, localInteresse);
+			id = this.ajudaController.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia,
+					localInteresse);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda presencial: " + iae.getMessage());
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial: " + iae.getMessage());
 		}
 
 		return id;
@@ -262,11 +249,9 @@ public class Sistema {
 
 		try {
 			String matrTutor = this.tutorController.getTutorAjuda(disciplina);
-			id = this.ajudaController.pedirAjudaOnline(matrAluno, matrTutor,
-					disciplina);
+			id = this.ajudaController.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda online: " + iae.getMessage());
+			throw new IllegalArgumentException("Erro no pedido de ajuda online: " + iae.getMessage());
 		}
 
 		return id;
@@ -285,16 +270,15 @@ public class Sistema {
 		try {
 			tutor = this.ajudaController.pegarTutor(idAjuda);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(
-					"Erro ao tentar recuperar tutor : " + iae.getMessage());
+			throw new IllegalArgumentException("Erro ao tentar recuperar tutor : " + iae.getMessage());
 		}
 
 		return "Tutor - " + tutor;
 	}
 
 	/**
-	 * Avalia um tutor a partir do seu idAjuda especifico e de uma nota
-	 * escolhida pelo aluno
+	 * Avalia um tutor a partir do seu idAjuda especifico e de uma nota escolhida
+	 * pelo aluno
 	 * 
 	 * @param idAjuda
 	 *            int com o id de ajuda do tutor
@@ -306,23 +290,19 @@ public class Sistema {
 
 		try {
 			if (nota < 0) {
-				throw new IllegalArgumentException(
-						"nota nao pode ser menor que 0");
+				throw new IllegalArgumentException("nota nao pode ser menor que 0");
 			} else if (nota > 5) {
-				throw new IllegalArgumentException(
-						"nota nao pode ser maior que 5");
+				throw new IllegalArgumentException("nota nao pode ser maior que 5");
 			}
 			DecimalFormat formatador = new DecimalFormat("0.00");
 
 			String matricula = this.ajudaController.getMatriculaTutor(idAjuda);
-			Tutor tutor = this.tutorController
-					.recuperaTutorPorMatricula(matricula);
+			Tutor tutor = this.tutorController.recuperaTutorPorMatricula(matricula);
 			this.ajudaController.avalia(idAjuda);
 			String retorno = formatador.format(tutor.avaliacaoTutor(nota));
 			return retorno;
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException("Erro na avaliacao de tutor: "
-					+ iae.getMessage());
+			throw new IllegalArgumentException("Erro na avaliacao de tutor: " + iae.getMessage());
 		}
 	}
 
@@ -335,17 +315,15 @@ public class Sistema {
 		try {
 			informacao = this.ajudaController.getInfoAjuda(idAjuda, atributo);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(
-					"Erro ao tentar recuperar info da ajuda : "
-							+ iae.getMessage());
+			throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : " + iae.getMessage());
 		}
 
 		return informacao;
 	}
 
 	/**
-	 * Efetua uma doacao a um tutor especifico, este fica com uma taxa do
-	 * dinheiro doado e o restante e direcionado ao caixa do sistema
+	 * Efetua uma doacao a um tutor especifico, este fica com uma taxa do dinheiro
+	 * doado e o restante e direcionado ao caixa do sistema
 	 * 
 	 * @param matriculaTutor
 	 *            matricula do tutor que recebera a doacao
@@ -355,19 +333,16 @@ public class Sistema {
 	public void doar(String matriculaTutor, int totalCentavos) {
 		try {
 			if (totalCentavos < 0) {
-				throw new IllegalArgumentException(
-						"totalCentavos nao pode ser menor que zero");
+				throw new IllegalArgumentException("totalCentavos nao pode ser menor que zero");
 			}
 
-			int totalSistema = (int) (((10 - tutorController
-					.getTaxaTutor(matriculaTutor) * 10) / 10) * totalCentavos);
+			int totalSistema = (int) (((10 - tutorController.getTaxaTutor(matriculaTutor) * 10) / 10) * totalCentavos);
 			int totalTutor = totalCentavos - totalSistema;
 
 			caixa.adicionaDinheiro(totalSistema);
 			tutorController.recebeDinheiro(matriculaTutor, totalTutor);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException("Erro na doacao para tutor: "
-					+ iae.getMessage());
+			throw new IllegalArgumentException("Erro na doacao para tutor: " + iae.getMessage());
 		}
 	}
 
@@ -391,9 +366,7 @@ public class Sistema {
 		try {
 			return tutorController.getDinheiroTutor(emailTutor);
 		} catch (IllegalArgumentException iae) {
-			throw new IllegalArgumentException(
-					"Erro na consulta de total de dinheiro do tutor: "
-							+ iae.getMessage());
+			throw new IllegalArgumentException("Erro na consulta de total de dinheiro do tutor: " + iae.getMessage());
 		}
 	}
 
@@ -412,5 +385,18 @@ public class Sistema {
 	 */
 	public void configurarOrdem(String atributo) {
 		this.tutorController.configuraOrdem(atributo);
+	}
+
+	/**
+	 * Carrega as informacoes do sistema
+	 */
+	public void carregar() {
+		Caixa aux = (Caixa) Persistencia.carregar("caixaSistema");
+		if (aux != null) {
+			this.caixa = aux;
+		}
+		alunoController.carregar();
+		tutorController.carregar();
+		ajudaController.carregar();
 	}
 }
