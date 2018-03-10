@@ -11,12 +11,13 @@ public class TutorController {
 
 	private Map<String, Tutor> tutores;
 	private Comparator<Tutor> criterioOrd;
-
+	private Persistencia persistencia;
 	/**
 	 * Cria uma objeto Sistema
 	 */
 	public TutorController() {
 		this.tutores = new HashMap<String, Tutor>();
+		this.persistencia = new Persistencia();
 	}
 
 	public void tornarTutor(String matricula, Aluno aluno, String disciplina, int proficiencia) {
@@ -297,9 +298,6 @@ public class TutorController {
 		}
 	}
 
-	public Map<String,Tutor> getMapTutor() {
-		return this.tutores;
-	}
 
 	/**
 	 * Configura a ordem de listagem de tutores baseado seus atributos.
@@ -327,5 +325,9 @@ public class TutorController {
 		default:
 			throw new IllegalArgumentException("atributo invalido");
 		}
+	}
+
+	public void salvar() {
+		this.persistencia.salvar(tutores, "tutorMap");
 	}
 }

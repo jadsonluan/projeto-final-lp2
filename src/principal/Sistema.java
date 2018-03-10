@@ -364,12 +364,9 @@ public class Sistema {
 	}
 
 	public void salvar() {
-		Map mapAlunos = this.alunoController.getMapAlunos();
-		Map mapTutores = this.tutorController.getMapTutor();
-		Map mapAjudas = this.ajudaController.getMapAjudas();
-		this.persistencia.salvar(mapAlunos, "mapAlunos");
-		this.persistencia.salvar(mapTutores, "mapTutores");
-		this.persistencia.salvar(mapAjudas, "mapAjudas");
+		this.alunoController.salvar();
+		this.tutorController.salvar();
+		this.ajudaController.salvar();
 		this.persistencia.salvar(caixa, "caixaSistema");
 	}
 

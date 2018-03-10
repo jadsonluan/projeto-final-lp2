@@ -3,22 +3,31 @@ package principal;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Classe de controle de ajuda.
+ * 
+ * @author Arthur de Lima Ferrao - 117110318
+ */
 public class AjudaController {
 	private Map<Integer, Ajuda> listaAjuda;
+	private Persistencia persistencia;
 
 	public AjudaController() {
 		this.listaAjuda = new HashMap<>();
+		this.persistencia = new Persistencia();
 	}
 
-	public int pedirAjudaPresencial(String matrAluno, String matrTutor, String disciplina, String horario, String dia,
-			String localInteresse) {
+	public int pedirAjudaPresencial(String matrAluno, String matrTutor,
+			String disciplina, String horario, String dia, String localInteresse) {
 		int id = this.listaAjuda.values().size() + 1;
-		Ajuda ajuda = new AjudaPresencial(id, matrAluno, matrTutor, disciplina, horario, dia, localInteresse);
+		Ajuda ajuda = new AjudaPresencial(id, matrAluno, matrTutor, disciplina,
+				horario, dia, localInteresse);
 		this.listaAjuda.put(id, ajuda);
 		return id;
 	}
 
-	public int pedirAjudaOnline(String matrAluno, String matrTutor, String disciplina) {
+	public int pedirAjudaOnline(String matrAluno, String matrTutor,
+			String disciplina) {
 		int id = this.listaAjuda.values().size() + 1;
 		Ajuda ajuda = new AjudaOnline(id, matrAluno, matrTutor, disciplina);
 		this.listaAjuda.put(id, ajuda);
@@ -31,15 +40,15 @@ public class AjudaController {
 		String representacao = ajuda.pegarTutor();
 		return representacao;
 	}
-	
+
 	public void avalia(int idAjuda) {
 		verificaAjuda(idAjuda);
 		Ajuda ajuda = this.listaAjuda.get(idAjuda);
-		
+
 		if (ajuda.foiAvaliada()) {
 			throw new IllegalArgumentException("Ajuda ja avaliada");
 		}
-		
+
 		ajuda.avalia();
 	}
 
@@ -67,7 +76,7 @@ public class AjudaController {
 		}
 	}
 
-	public Map<Integer,Ajuda> getMapAjudas() {
-		return this.listaAjuda;
+	public void salvar() {
+		this.persistencia.salvar(this.listaAjuda, "ajudaMap");
 	}
 }

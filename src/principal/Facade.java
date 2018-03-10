@@ -227,9 +227,9 @@ public class Facade {
 	public void salvar() {
 		this.sistema.salvar();
 	}
-	
+
 	/**
-	 * @see Sistema#configurarOrdem(String) 
+	 * @see Sistema#configurarOrdem(String)
 	 */
 	public void configuraOrdem(String atributo) {
 		this.sistema.configurarOrdem(atributo);
