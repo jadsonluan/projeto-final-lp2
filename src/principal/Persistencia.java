@@ -8,8 +8,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Map;
 
+/**
+ * 
+ * @author Arthur de Lima Ferrao
+ */
 public class Persistencia {
 
+	/**
+	 * Salva um objeto em um arquivo txt
+	 * @param obj o objeto para salvar
+	 * @param tipoValues o nome do arquivo
+	 */
 	public void salvar(Object obj, String tipoValues) {
 		FileOutputStream ops = null;
 		ObjectOutputStream oos = null;

@@ -164,20 +164,32 @@ public class Facade {
 		return this.sistema.pegarNivel(matriculaTutor);
 	}
 
+	/**
+	 * @see Sistema#pedirAjudaPresencial(String, String, String, String, String)
+	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina,
 			String horario, String dia, String localInteresse) {
 		return this.sistema.pedirAjudaPresencial(matrAluno, disciplina,
 				horario, dia, localInteresse);
 	}
 
+	/**
+	 * @see Sistema#pedirAjudaOnline(String, String)
+	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		return this.sistema.pedirAjudaOnline(matrAluno, disciplina);
 	}
 
+	/**
+	 * @see Sistema#pegarTutor(int)
+	 */
 	public String pegarTutor(int idAjuda) {
 		return this.sistema.pegarTutor(idAjuda);
 	}
 
+	/**
+	 * @see Sistema#getInfoAjuda(int, String)
+	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return this.sistema.getInfoAjuda(idAjuda, atributo);
 	}
@@ -224,6 +236,9 @@ public class Facade {
 		return sistema.totalDinheiroTutor(emailTutor);
 	}
 
+	/**
+	 * @see Sistema#salvar()
+	 */
 	public void salvar() {
 		this.sistema.salvar();
 	}

@@ -126,7 +126,7 @@ public abstract class Ajuda implements Serializable{
 		return this.avaliada;
 	}
 	/**
-	 * troca o valor de avaliado para true
+	 * Troca o valor de avaliado para true
 	 */
 	public void avalia() {
 		this.avaliada = true;

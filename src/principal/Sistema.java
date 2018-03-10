@@ -216,6 +216,23 @@ public class Sistema {
 		return this.tutorController.pegarNivel(matriculaTutor);
 	}
 
+	/**
+	 * Cadastra um pedido de ajuda presencial
+	 * 
+	 * @param matrAluno
+	 *            a matricula do aluno que pede ajuda
+	 * @param matrTutor
+	 *            a matricula do tutor
+	 * @param disciplina
+	 *            a disciplina que precisa de ajuda
+	 * @param horario
+	 *            o horario que deseja ser atendido
+	 * @param dia
+	 *            o dia que deseja ser atendido
+	 * @param localInteresse
+	 *            o lacal que deseja
+	 * @return o id do pedido de ajuda
+	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina,
 			String horario, String dia, String localInteresse) {
 		int id = -1;
@@ -233,6 +250,15 @@ public class Sistema {
 		return id;
 	}
 
+	/**
+	 * Cadastra um pedido de ajuda online
+	 * 
+	 * @param matrAluno
+	 *            a matricula do aluno
+	 * @param disciplina
+	 *            a disciplina desejada
+	 * @return o id do pedido de ajuda
+	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		int id = -1;
 
@@ -248,6 +274,13 @@ public class Sistema {
 		return id;
 	}
 
+	/**
+	 * Pega o tutor cadastrado no pedido de ajuda no formato "Tutor - tutor"
+	 * 
+	 * @param idAjuda
+	 *            o id da ajuda
+	 * @return tutor do pedido de ajuda
+	 */
 	public String pegarTutor(int idAjuda) {
 		String tutor = null;
 
@@ -295,6 +328,9 @@ public class Sistema {
 		}
 	}
 
+	/**
+	 * @see AjudaController#getInfoAjuda(int, String)
+	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		String informacao = null;
 
@@ -363,6 +399,9 @@ public class Sistema {
 		}
 	}
 
+	/**
+	 * Salva os dados do sistema
+	 */
 	public void salvar() {
 		this.alunoController.salvar();
 		this.tutorController.salvar();

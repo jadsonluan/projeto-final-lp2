@@ -55,7 +55,7 @@ public class AjudaPresencial extends Ajuda {
 	}
 
 	/**
-	 *@see Ajuda#getInfo(String)
+	 * @see Ajuda#getInfo(String)
 	 */
 	@Override
 	public String getInfo(String atributo) {
@@ -75,8 +75,11 @@ public class AjudaPresencial extends Ajuda {
 
 		return valor;
 	}
+
 	/**
-	 * Pega a representacao do tutor no formato "matriculaTutor, horario - hora, dia - dia, local - local, disciplina - disciplina"
+	 * Pega a representacao do tutor no formato
+	 * "matriculaTutor, horario - hora, dia - dia, local - local, disciplina - disciplina"
+	 * 
 	 * @return retorna a representacao do tutor
 	 */
 	@Override
