@@ -1,11 +1,13 @@
 package principal;
 
+import java.io.Serializable;
+
 /**
  * Representa um aluno.
  *
  * @author Jadson Luan Soares da Silva, 117110391
  */
-public class Aluno implements Comparable<Aluno> {
+public class Aluno implements Comparable<Aluno>, Serializable {
 	private String matricula;
 	private String nome;
 	private String email;

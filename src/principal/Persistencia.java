@@ -10,18 +10,19 @@ import java.util.Map;
 
 public class Persistencia {
 
-	public void salvar(Map obj, String tipoValues) {
+	public void salvar(Object obj, String tipoValues) {
 		FileOutputStream ops = null;
+		ObjectOutputStream oos = null;
 		try {
-			ops = new FileOutputStream(tipoValues + ".txt");
-			ObjectOutputStream oos = new ObjectOutputStream(ops);
+			ops = new FileOutputStream("arquivo" + File.separator + tipoValues + ".txt");
+			oos = new ObjectOutputStream(ops);
 			oos.writeObject(obj);
 		} catch (IOException e) {
 			System.out.println("erro : " + e);
 		} finally {
-			if (ops != null) {
+			if (oos != null) {
 				try {
-					ops.close();
+					oos.close();
 				} catch (IOException e) {
 					System.out.println("erro : " + e);
 				}

@@ -158,7 +158,7 @@ public class AlunoController {
 		return null;
 	}
 
-	public Map getMapAlunos() {
+	public Map<String,Aluno> getMapAlunos() {
 		return this.alunos;
 	}
 

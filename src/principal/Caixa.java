@@ -1,6 +1,8 @@
 package principal;
 
-public class Caixa {
+import java.io.Serializable;
+
+public class Caixa implements Serializable{
 	private int dinheiro;
 
 	public Caixa() {

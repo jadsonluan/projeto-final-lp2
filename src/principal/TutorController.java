@@ -297,7 +297,7 @@ public class TutorController {
 		}
 	}
 
-	public Map getMapTutor() {
+	public Map<String,Tutor> getMapTutor() {
 		return this.tutores;
 	}
 

@@ -67,7 +67,7 @@ public class AjudaController {
 		}
 	}
 
-	public Map getMapAjudas() {
+	public Map<Integer,Ajuda> getMapAjudas() {
 		return this.listaAjuda;
 	}
 }

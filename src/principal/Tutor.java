@@ -1,5 +1,6 @@
 package principal;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -7,7 +8,7 @@ import java.util.*;
  * 
  * @author Mateus Augusto Souza Santos
  */
-public class Tutor {
+public class Tutor implements Serializable{
 	private Map<String, Integer> disciplinas;
 	private double avaliacao;
 	private Set<String> locais;

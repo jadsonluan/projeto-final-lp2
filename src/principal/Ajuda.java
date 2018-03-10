@@ -1,6 +1,8 @@
 package principal;
 
-public abstract class Ajuda {
+import java.io.Serializable;
+
+public abstract class Ajuda implements Serializable{
 	private int id;
 	private String matrAluno;
 	private String matrTutor;
