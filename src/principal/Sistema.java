@@ -12,7 +12,6 @@ public class Sistema {
 	private AlunoController alunoController;
 	private TutorController tutorController;
 	private AjudaController ajudaController;
-	private Persistencia persistencia;
 	private Caixa caixa;
 
 	/**
@@ -22,7 +21,6 @@ public class Sistema {
 		this.alunoController = new AlunoController();
 		this.tutorController = new TutorController();
 		this.ajudaController = new AjudaController();
-		this.persistencia = new Persistencia();
 		this.caixa = new Caixa();
 	}
 
@@ -406,7 +404,7 @@ public class Sistema {
 		this.alunoController.salvar();
 		this.tutorController.salvar();
 		this.ajudaController.salvar();
-		this.persistencia.salvar(caixa, "caixaSistema");
+		Persistencia.salvar(caixa, "caixaSistema");
 	}
 
 	/**

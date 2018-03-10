@@ -7,13 +7,11 @@ import java.util.Map;
 
 public class AlunoController {
 	private Map<String, Aluno> alunos;
-	private Persistencia persistencia;
 	/**
 	 * Cria uma objeto AlunoController.
 	 */
 	public AlunoController() {
 		this.alunos = new HashMap<String, Aluno>();
-		this.persistencia = new Persistencia();
 	}
 	
 	public Aluno getAluno(String matricula){
@@ -160,7 +158,7 @@ public class AlunoController {
 	}
 
 	public void salvar() {
-		this.persistencia.salvar(alunos, "alunoMap");
+		Persistencia.salvar(alunos, "alunoMap");
 	}
 
 }

@@ -10,14 +10,12 @@ import java.util.Map;
  */
 public class AjudaController {
 	private Map<Integer, Ajuda> listaAjuda;
-	private Persistencia persistencia;
 
 	/**
 	 * Cria objeto AjudaController
 	 */
 	public AjudaController() {
 		this.listaAjuda = new HashMap<>();
-		this.persistencia = new Persistencia();
 	}
 
 	/**
@@ -138,6 +136,6 @@ public class AjudaController {
 	 * 
 	 */
 	public void salvar() {
-		this.persistencia.salvar(this.listaAjuda, "ajudaMap");
+		Persistencia.salvar(this.listaAjuda, "ajudaMap");
 	}
 }
