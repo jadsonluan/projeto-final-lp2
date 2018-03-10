@@ -19,7 +19,7 @@ public class Persistencia {
 	 * @param obj o objeto para salvar
 	 * @param tipoValues o nome do arquivo
 	 */
-	public void salvar(Object obj, String tipoValues) {
+	public static void salvar(Object obj, String tipoValues) {
 		FileOutputStream ops = null;
 		ObjectOutputStream oos = null;
 		try {
@@ -39,6 +39,11 @@ public class Persistencia {
 		}
 	}
 
+	/**
+	 * Carrega um objeto armazenado em um arquivo
+	 * @param nomeArquivo Nome do arquivo acessado
+	 * @return Objeto contido no arquivo acessado
+	 */
 	public static Object carregar(String nomeArquivo) {
 		FileInputStream ops = null;
 		ObjectInputStream oos = null;
