@@ -186,8 +186,7 @@ public class Tutor implements Serializable{
 	 */
 	public double getTaxaTutor() {
 		if (this.avaliacao <= 3.0) {
-			double decrescimo = (3.0 - this.avaliacao) / 10;
-			decrescimo = (int) (decrescimo / 0.01) * 0.01;
+			double decrescimo = (30 - (int)(this.avaliacao * 10)) / 100.0;
 			return 0.4 - decrescimo;
 			//return 0.4 - (30 - this.avaliacao * 10) / 100;
 		} else if (this.avaliacao < 4.5) {
