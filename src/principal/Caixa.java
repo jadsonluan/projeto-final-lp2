@@ -1,14 +1,21 @@
 package principal;
 
 import java.io.Serializable;
-
+/**
+ * Representa um caixa, incluindo as transacoes e calculos, destinados ao sistema
+ * @author Gabriel de Souza Barros
+ *
+ */
 public class Caixa implements Serializable{
 	private int dinheiro;
 
 	public Caixa() {
 		this.dinheiro = 0;
 	}
-
+	/**
+	 * Metodo que retorna o dinheiro do caixa
+	 * @return int dinheiro do caixa
+	 */
 	public int getDinheiro() {
 		return dinheiro;
 	}

@@ -14,7 +14,11 @@ public class AlunoController {
 	public AlunoController() {
 		this.alunos = new HashMap<String, Aluno>();
 	}
-
+	/**
+	 * Pega um aluno a partir da sua matricula
+	 * @param matricula eh a matricula do aluno desejado
+	 * @return Aluno que contem a matricula especificada
+	 */
 	public Aluno getAluno(String matricula) {
 		if (!this.alunos.containsKey(matricula)) {
 			throw new NullPointerException("Erro na definicao de papel: Tutor nao encontrado");
@@ -87,15 +91,14 @@ public class AlunoController {
 	}
 
 	/**
-	 * Recupera o aluno pela matricula O formato da representaÃ§Ã£o do aluno
-	 * Ã©:<br>
-	 * â€œMatricula - Nome - CÃ³digoCurso - telefone - emailâ€� <br>
-	 * Caso nÃ£o tenha telefone, a impressÃ£o do aluno deve ter o formato:<br>
-	 * â€œMatricula - Nome - CÃ³digoCurso - emailâ€�
+	 * Recupera o aluno pela matricula O formato da representacao do aluno eh:<br>
+	 * Matricula - Nome - CodigoCurso - telefone - email <br>
+	 * Caso nao tenha telefone, a impressao do aluno deve ter o formato:<br>
+	 * Matricula - Nome - CodigoCurso - email
 	 * 
 	 * @param matricula
 	 *            a matricula do aluno
-	 * @return retorna a representaÃ§Ã£o em String do aluno
+	 * @return retorna a representacao em String do aluno
 	 */
 	public String recuperaAluno(String matricula) {
 		try {
@@ -110,7 +113,7 @@ public class AlunoController {
 	/**
 	 * Lista todos os alunos cadastrados
 	 * 
-	 * @return retorna a lista com as representaÃ§Ã£o em String dos alunos
+	 * @return retorna a lista com as representacao em String dos alunos
 	 */
 	public String listarAlunos() {
 		ArrayList<Aluno> listAlunos = new ArrayList<>();
@@ -132,7 +135,7 @@ public class AlunoController {
 	}
 
 	/**
-	 * Pega a informaÃ§Ã£o de um atributo do aluno
+	 * Pega a informacao de um atributo do aluno
 	 * 
 	 * @param matricula
 	 *            a matricula do aluno
@@ -159,7 +162,9 @@ public class AlunoController {
 
 		return null;
 	}
-
+	/**
+	 * Salva as informacoes dos alunos em um arquivo
+	 */
 	public void salvar() {
 		Persistencia.salvar(alunos, "alunoMap");
 	}
@@ -172,6 +177,12 @@ public class AlunoController {
 		if (aux != null) {
 			this.alunos = aux;
 		}
+	}
+	/**
+	 * Limpa todas as informacoes dos alunos armazenadas
+	 */
+	public void limpar() {
+		Persistencia.limpar("alunoMap");
 	}
 
 }

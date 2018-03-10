@@ -15,16 +15,16 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 	private String telefone;
 
 	/**
-	 * ConstrÃ³i um aluno (com telefone).
+	 * Constroi um aluno (com telefone).
 	 * 
 	 * @param matricula
-	 *            matrÃ­cula do aluno
+	 *            matricula do aluno
 	 * @param nome
 	 *            nome do aluno
 	 * @param email
 	 *            e-mail do aluno
 	 * @param codigoCurso
-	 *            cÃ³digo do curso do aluno
+	 *            codigo do curso do aluno
 	 * @param telefone
 	 *            telefone do aluno
 	 */
@@ -55,16 +55,16 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 	}
 
 	/**
-	 * ConstrÃ³i um aluno. (sem telefone)
+	 * Constroi um aluno. (sem telefone)
 	 * 
 	 * @param matricula
-	 *            matrÃ­cula do aluno
+	 *            matricula do aluno
 	 * @param nome
 	 *            nome do aluno
 	 * @param email
 	 *            e-mail do aluno
 	 * @param codigoCurso
-	 *            cÃ³digo do curso do aluno
+	 *            codigo do curso do aluno
 	 * @param telefone
 	 *            telefone do aluno
 	 */
@@ -91,7 +91,7 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 	}
 
 	/**
-	 * Retorna o cÃ³digo do curso do aluno
+	 * Retorna o codigo do curso do aluno
 	 * 
 	 * @return codigoCurso
 	 */
@@ -110,11 +110,11 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 
 	@Override
 	/**
-	 * RepresentaÃ§Ã£o textual de um aluno.<br>
-	 * O formato da representaÃ§Ã£o do aluno Ã©:<br>
-	 * â€œMatricula - Nome - CÃ³digoCurso - telefone - emailâ€� <br>
-	 * Caso nÃ£o tenha telefone, a impressÃ£o do aluno deve ter o formato:<br>
-	 * â€œMatricula - Nome - CÃ³digoCurso - emailâ€�
+	 * Representacao textual de um aluno.<br>
+	 * O formato da representacao do aluno eh:<br>
+	 * Matricula - Nome - CodigoCurso - telefone - email <br>
+	 * Caso nao tenha telefone, a impressao do aluno deve ter o formato:<br>
+	 * Matricula - Nome - CodigoCurso - email
 	 */
 	public String toString() {
 		String repr = matricula;
@@ -136,7 +136,10 @@ public class Aluno implements Comparable<Aluno>, Serializable {
 	public int compareTo(Aluno other) {
 		return this.nome.compareTo(other.nome);
 	}
-
+	/**
+	 * Metodo que retorna a matricula do aluno
+	 * @return String matricula do aluno
+	 */
 	public String getMatricula() {
 		return matricula;
 	}

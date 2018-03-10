@@ -131,7 +131,7 @@ public class AjudaController {
 	}
 
 	/**
-	 * 
+	 * Salva as informacoes de ajudas
 	 */
 	public void salvar() {
 		Persistencia.salvar(this.listaAjuda, "ajudaMap");
@@ -145,5 +145,12 @@ public class AjudaController {
 		if (aux != null) {
 			this.listaAjuda = aux;
 		}
+	}
+
+	/**
+	 * Limpa as informacoes armazenadas de ajudas
+	 */
+	public void limpar() {
+		Persistencia.limpar("ajudaMap");
 	}
 }

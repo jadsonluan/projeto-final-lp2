@@ -18,7 +18,13 @@ public class TutorController {
 	public TutorController() {
 		this.tutores = new HashMap<String, Tutor>();
 	}
-
+	/**
+	 * Transforma um aluno em um tutor, atraves das informacoes do aluno
+	 * @param matricula eh a matricula do aluno que se tornara tutor
+	 * @param aluno eh o aluno especificado
+	 * @param disciplina eh uma disciplina especificada pelo tutor para ensinar
+	 * @param proficiencia eh a proficiencia do tutor na disciplina especificada
+	 */
 	public void tornarTutor(String matricula, Aluno aluno, String disciplina, int proficiencia) {
 		if (this.tutores.containsKey(matricula)) {
 			Tutor tutor = this.tutores.get(matricula);
@@ -118,7 +124,7 @@ public class TutorController {
 	 *            o horario para consulta
 	 * @param dia
 	 *            o dia para consulta
-	 * @return retorna um valor boolean, true represetando que existe e false que
+	 * @return retorna um valor boolean, true representando que existe e false que
 	 *         nao
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
@@ -174,7 +180,7 @@ public class TutorController {
 
 		return tutores.get(matriculaTutor).getNivel();
 	}
-
+	
 	public String getTutorAjuda(String disciplina, String horario, String dia, String local) {
 		verificaDados(disciplina, horario, dia, local);
 
@@ -324,7 +330,9 @@ public class TutorController {
 			throw new IllegalArgumentException("atributo invalido");
 		}
 	}
-
+	/**
+	 * Salva as informacoes armazenadas de tutores
+	 */
 	public void salvar() {
 		Persistencia.salvar(tutores, "tutorMap");
 	}
@@ -337,5 +345,11 @@ public class TutorController {
 		if (aux != null) {
 			this.tutores = aux;
 		}
+	}
+	/**
+	 * Limpa as informacoes armazenadas de tutores
+	 */
+	public void limpar() {
+		Persistencia.limpar("tutorMap");
 	}
 }

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 /**
  * 
  * @author Arthur de Lima Ferrao
@@ -63,5 +64,19 @@ public class Persistencia {
 		}
 		return null;
 	}
+	
+	/**
+	 * Limpa todos os dados de um arquivo a partir do seu nome
+	 * @param nomeArquivo eh o nome do arquivo que deseja-se limpar
+	 */
+	public static void limpar(String nomeArquivo) {
+		try {
+			PrintWriter pw = new PrintWriter(nomeArquivo);
+			pw.close();
+		} catch (IOException e) {
+			System.out.println("erro : " + e);			
+		}
+	}
+
 
 }

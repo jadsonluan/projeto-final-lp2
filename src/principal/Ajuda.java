@@ -1,12 +1,13 @@
 package principal;
 
 import java.io.Serializable;
+
 /**
  * Representa um pedido de ajuda.
  *
  * @author Arthur de Lima Ferrao - 117110318
  */
-public abstract class Ajuda implements Serializable{
+public abstract class Ajuda implements Serializable {
 	private int id;
 	private String matrAluno;
 	private String matrTutor;
@@ -15,10 +16,15 @@ public abstract class Ajuda implements Serializable{
 
 	/**
 	 * Constroi um pedido de ajuda
-	 * @param id o idendificador do pedido de ajuda
-	 * @param matrAluno a matricula do aluno que pede ajuda
-	 * @param matrTutor a matricula do tutor
-	 * @param disciplina a disciplina que precisa de ajuda
+	 * 
+	 * @param id
+	 *            o idendificador do pedido de ajuda
+	 * @param matrAluno
+	 *            a matricula do aluno que pede ajuda
+	 * @param matrTutor
+	 *            a matricula do tutor
+	 * @param disciplina
+	 *            a disciplina que precisa de ajuda
 	 */
 	public Ajuda(int id, String matrAluno, String matrTutor, String disciplina) {
 		verificaDados(id, matrAluno, matrTutor, disciplina);
@@ -28,7 +34,7 @@ public abstract class Ajuda implements Serializable{
 		this.disciplina = disciplina;
 		this.avaliada = false;
 	}
-	
+
 	private void verificaDados(int id, String matrAluno, String matrTutor, String disciplina) {
 		if (id < 0) {
 			throw new IllegalArgumentException("id nao pode menor que zero ");
@@ -46,10 +52,12 @@ public abstract class Ajuda implements Serializable{
 			throw new IllegalArgumentException("disciplina nao pode ser vazio ou em branco");
 		}
 	}
-	
+
 	/**
 	 * Pega a valor do atributo desejado
-	 * @param atributo o atributo que quer o valor
+	 * 
+	 * @param atributo
+	 *            o atributo que quer o valor
 	 * @return retorna o valor do atributo
 	 */
 	public String getInfo(String atributo) {
@@ -71,7 +79,9 @@ public abstract class Ajuda implements Serializable{
 	}
 
 	/**
-	 * Pega a representacao do tutor no formato "matriculaTutor, disciplina: disciplina"
+	 * Pega a representacao do tutor no formato "matriculaTutor, disciplina:
+	 * disciplina"
+	 * 
 	 * @return retorna a representacao do tutor
 	 */
 	public String pegarTutor() {
@@ -82,6 +92,7 @@ public abstract class Ajuda implements Serializable{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -94,6 +105,7 @@ public abstract class Ajuda implements Serializable{
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -109,31 +121,35 @@ public abstract class Ajuda implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 	/**
 	 * Pega a matricula do tutor
+	 * 
 	 * @return matricula do tutor
 	 */
 	public String getTutor() {
 		return this.matrTutor;
 	}
-	
+
 	/**
 	 * Retorna um valor boolean para se foi avalido ou nao
+	 * 
 	 * @return avaliado - true se sim, false se nao
 	 */
 	public boolean foiAvaliada() {
 		return this.avaliada;
 	}
+
 	/**
 	 * Troca o valor de avaliado para true
 	 */
 	public void avalia() {
 		this.avaliada = true;
 	}
-	
+
 	/**
 	 * Pega o nome da disciplina
+	 * 
 	 * @return nome da disciplina
 	 */
 	public String getDisciplina() {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * Classe que representa a posição de tutoria exercida por um aluno
+ * Classe que representa a posicao de tutoria exercida por um aluno
  * 
  * @author Mateus Augusto Souza Santos
  */
@@ -32,13 +32,13 @@ public class Tutor implements Serializable{
 	}
 
 	/**
-	 * Cadastra uma nova disciplina para o tutor, incluindo sua proficiência na
+	 * Cadastra uma nova disciplina para o tutor, incluindo sua proficiencia na
 	 * mesma.
 	 * 
 	 * @param disciplina
-	 *            é a nova disciplina cadastrada
+	 *            eh a nova disciplina cadastrada
 	 * @param proficiencia
-	 *            é a proficiencia do tutor nessa disciplina
+	 *            eh a proficiencia do tutor nessa disciplina
 	 */
 	public void cadastrarDisciplina(String disciplina, int proficiencia) {
 		if (this.disciplinas.containsKey(disciplina)) {
@@ -52,12 +52,12 @@ public class Tutor implements Serializable{
 	}
 
 	/**
-	 * Cadastra um horário dentro de um dia específico.
+	 * Cadastra um horario dentro de um dia especifico.
 	 * 
 	 * @param hora
-	 *            é a hora que deseja-se cadastrar
+	 *            eh a hora que deseja-se cadastrar
 	 * @param dia
-	 *            é o dia que deseja-se cadastrar a hora
+	 *            eh o dia que deseja-se cadastrar a hora
 	 */
 	public void cadastrarHorario(String hora, String dia) {
 		verificaDados(hora, dia, "LCC2");
@@ -85,14 +85,14 @@ public class Tutor implements Serializable{
 	}
 
 	/**
-	 * Consulta se o horario do tutor está livre ou ocupado.
+	 * Consulta se o horario do tutor esta livre ou ocupado.
 	 * 
 	 * @param hora
-	 *            é a hora que deseja-se consultar
+	 *            eh a hora que deseja-se consultar
 	 * @param dia
-	 *            é o dia que deseja-se consultar
-	 * @return retorna boolean true se o horário estiver livre. Retorna false se
-	 *         não.
+	 *            eh o dia que deseja-se consultar
+	 * @return retorna boolean true se o horario estiver livre. Retorna false se
+	 *         nao.
 	 */
 	public boolean consultaHorario(String hora, String dia) {
 		if (this.horarios.containsKey(dia)) {
@@ -106,11 +106,10 @@ public class Tutor implements Serializable{
 	}
 
 	/**
-		if
-	 * Consulta se o tutor estará em um local específico
+	 * Consulta se o tutor estara em um local especifico
 	 * 
 	 * @param local
-	 *            é o local que deseja-se consultar
+	 *            eh o local que deseja-se consultar
 	 * @return retorna o boolean true se o local estiver ocupado. Retorna false se
 	 *         estiver livre.
 	 */
@@ -123,7 +122,7 @@ public class Tutor implements Serializable{
 	}
 
 	/**
-	 * Retorna o aluno com a funçao de tutor
+	 * Retorna o aluno com a funcao de tutor
 	 * 
 	 * @return Objeto Aluno
 	 */
@@ -179,9 +178,9 @@ public class Tutor implements Serializable{
 	/**
 	 * Retorna a taxa que o tutor deve receber das doacoes feitas a ele
 	 * 
-	 * @return 0.90 (90%) + 0.01 (1%) por d�cimo acima de 4.5 (ex.: nota 4.7, ele
+	 * @return 0.90 (90%) + 0.01 (1%) por decimo acima de 4.5 (ex.: nota 4.7, ele
 	 *         recebe 0.92(92%)) se sua avalicao estiver acima de 4.5. 0.80 (80%) se
-	 *         3.0 < avaliacao <= 4.5. 0.40 (40%) - 0.01 (1%) por d�cimo abaixo de
+	 *         3.0 < avaliacao <= 4.5. 0.40 (40%) - 0.01 (1%) por decimo abaixo de
 	 *         3.0 (exemplo, nota 2 ele recebe 0.30 (30%)) se a avaliacao <= 3.0
 	 */
 	public double getTaxaTutor() {
@@ -206,7 +205,10 @@ public class Tutor implements Serializable{
 	public void recebeDinheiro(int dinheiro) {
 		this.dinheiro += dinheiro;
 	}
-	
+	/**
+	 * Retorna o dinheiro do tutor
+	 * @return int dinheiro do tutor
+	 */
 	public int getDinheiro() {
 		return dinheiro;
 	}
