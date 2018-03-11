@@ -184,6 +184,13 @@ public class Facade {
 	public void carregar() {
 		this.sistema.carregar();
 	}
+	
+	/**
+	 * @see Sistema#limpar()
+	 */
+	public void limpar() {
+		this.sistema.limpar();
+	}
 
 	public static void main(String[] args) {
 		args = new String[] { "principal.Facade",
@@ -191,12 +198,6 @@ public class Facade {
 				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt",
 				"acceptance_test/us5_test.txt", "acceptance_test/us6_test.txt" };
 		EasyAccept.main(args);
-	}
-	/**
-	 * @see Sistema#limpar()
-	 */
-	public void limpar() {
-		this.sistema.limpar();
 	}
 
 }

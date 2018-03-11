@@ -7,6 +7,11 @@ import java.util.Map;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * Classe de controle de tutor
+ * 
+ * @author Arthur de Lima Ferrao - 117110318
+ */
 public class TutorController {
 
 	private Map<String, Tutor> tutores;
@@ -181,17 +186,20 @@ public class TutorController {
 		return tutores.get(matriculaTutor).getNivel();
 	}
 	
+	/**
+	 * Pega o tutor com melhor nota, com poficiencia na disciplina e que possui diponibilidade no dia, horario e local desejado.
+	 * @param disciplina a disciplina desejada
+	 * @param horario o horario desejado
+	 * @param dia o dia desejado
+	 * @param local o local desejado
+	 * @return matricula do tutor
+	 */
 	public String getTutorAjuda(String disciplina, String horario, String dia, String local) {
 		verificaDados(disciplina, horario, dia, local);
 
 		double maior = 0;
 		Tutor melhorTutor = null;
-		// pegando a lista invertida resolvo o problema de empate que tem q pegar o
-		// primeiro cadastrado
-		List<Tutor> invertida = new ArrayList<Tutor>(this.tutores.values());
-		Collections.reverse(invertida);
-
-		for (Tutor tutor : invertida) {
+		for (Tutor tutor : this.tutores.values()) {
 			if (tutor.getNota() > maior && tutor.consultaDisciplina(disciplina) && tutor.consultaLocal(local)
 					&& tutor.consultaHorario(horario, dia)) {
 				melhorTutor = tutor;
@@ -220,17 +228,17 @@ public class TutorController {
 		}
 	}
 
+	/**
+	 * Pega o tutor com melhor nota, com poficiencia na disciplina.
+	 * @param disciplina a disciplina desejada
+	 * @return matricula do tutor
+	 */
 	public String getTutorAjuda(String disciplina) {
 		verificaDados(disciplina, "lorem", "lorem", "lorem");
-
 		double maior = 0;
 		Tutor melhorTutor = null;
-		// pegando a lista invertida resolvo o problema de empate que tem q pegar o
-		// primeiro cadastrado
-		List<Tutor> invertida = new ArrayList<Tutor>(this.tutores.values());
-		Collections.reverse(invertida);
-
-		for (Tutor tutor : invertida) {
+		
+		for (Tutor tutor : this.tutores.values()) {
 			if (tutor.getNota() > maior && tutor.consultaDisciplina(disciplina)) {
 				melhorTutor = tutor;
 				maior = tutor.getNota();

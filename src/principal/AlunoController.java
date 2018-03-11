@@ -5,6 +5,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * Classe de controle de aluno.
+ * 
+ * @author Arthur de Lima Ferrao - 117110318
+ */
 public class AlunoController {
 	private Map<String, Aluno> alunos;
 
