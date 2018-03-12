@@ -70,8 +70,10 @@ public class Persistencia {
 	 * @param nomeArquivo eh o nome do arquivo que deseja-se limpar
 	 */
 	public static void limpar(String nomeArquivo) {
+
+
 		try {
-			PrintWriter pw = new PrintWriter(nomeArquivo);
+			PrintWriter pw = new PrintWriter(new File("arquivo" + File.separator + nomeArquivo + ".txt"));
 			pw.close();
 		} catch (IOException e) {
 			System.out.println("erro : " + e);			
